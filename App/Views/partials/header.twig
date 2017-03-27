@@ -24,9 +24,31 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
+        <div class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav">
+                {% if not auth %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('login') }}">Log in</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('signup') }}">Sign up</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth }}</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url(auth) }}">{{ auth }}</a>
+                            <a class="dropdown-item" href="{{ url('settings') }}">Settings</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('logout') }}">Log out</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>

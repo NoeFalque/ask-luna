@@ -20,6 +20,27 @@ class FormValidator {
         }
     }
 
+    public function validPassword($element, $value, $value_verification, $message) {
+        if(empty($value) || ($value != $value_verification)) {
+            $this->errors[$element] = $message;
+        }
+    }
+    public function validUsername($element, $value, $message) {
+        if(!preg_match('/[a-z0-9]+/', $value)) {
+            $this->errors[$element] = $message;
+        }
+    }
+    public function availableUsername($element, $value, $message) {
+        $model  = new UsersModel();
+        $result = $model->query("SELECT * FROM users WHERE username = ?", [
+            $value
+        ], true);
+        
+        if($result) {
+            $this->errors[$element] = $message;
+        }
+    }
+
     public function isNumeric($element, $value, $message) {
         if(!is_numeric($value)) {
             $this->errors[$element] = $message;

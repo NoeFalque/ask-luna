@@ -72,7 +72,7 @@ class App {
             self::$twig->addFunction($title);
             self::$twig->addFunction($pad);
 
-            isset($_SESSION['auth']) ? self::$twig->addGlobal('auth', $_SESSION['auth']) : self::$twig->addGlobal('auth', '');
+            isset($_SESSION['auth']) ? self::$twig->addGlobal('auth', $_SESSION['auth']) : self::$twig->addGlobal('auth', null);
         }
 
         return self::$twig;
@@ -91,7 +91,7 @@ class App {
 
     public static function secured() {
         if(!isset($_SESSION['auth'])) {
-            self::redirect('signin');
+            self::redirect('login');
             exit;
         }
     }
