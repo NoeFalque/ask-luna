@@ -167,4 +167,47 @@ class UsersController extends Controller {
         }
     }
 
+    public function settingsSecurity() {
+        if(!empty($_POST)) {
+            $old         = isset($_POST['old_password']) ? hash('sha256', Settings::getConfig()['salt'] . $_POST['old_password']) : '';
+            $new         = isset($_POST['new_password']) ? $_POST['new_password'] : '';
+            $new_confirm = isset($_POST['new_password_confirm']) ? $_POST['new_password_confirm'] : '';
+
+            $validator = new FormValidator();
+            $validator->rightPassword('old_password', $_SESSION['id'], $old, "Your old password is not correct");
+            $validator->validPassword('password', $new, $new_confirm, "You didn't write the same password twice");
+
+            if($validator->isValid()) {
+                $model = new UsersModel();
+                $model->update($_SESSION['id'], [
+                    'password' => hash('sha256', Settings::getConfig()['salt'] . $new)
+                ]);
+
+                $this->render('pages/settings/security.twig', [
+                    'title'       => 'Settings - Security',
+                    'description' => '',
+                    'success'     => 'Your information have been updated.',
+                    'page'        => 'security',
+                ]);
+            }
+
+            else {
+                $this->render('pages/settings/security.twig', [
+                    'title'       => 'Settings - Security',
+                    'description' => '',
+                    'errors'      => $validator->getErrors(),
+                    'page'        => 'security'
+                ]);
+            }
+        }
+
+        else {
+            $this->render('pages/settings/security.twig', [
+                'title'       => 'Settings - Security',
+                'description' => '',
+                'page'        => 'security'
+            ]);
+        }
+    }
+
 }

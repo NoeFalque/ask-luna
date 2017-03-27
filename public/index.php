@@ -52,6 +52,18 @@ $router->post('/settings/account/', function() {
     $controller->settingsAccount();
 });
 
+$router->get('/settings/security/', function() {
+    App::secured();
+    $controller = new \App\Controllers\UsersController();
+    $controller->settingsSecurity();
+});
+
+$router->post('/settings/security/', function() {
+    App::secured();
+    $controller = new \App\Controllers\UsersController();
+    $controller->settingsSecurity();
+});
+
 $router->error(function() {
     App::error();
 });

@@ -25,17 +25,28 @@ class FormValidator {
             $this->errors[$element] = $message;
         }
     }
+
+    public function rightPassword($element, $id, $value, $message) {
+        $model    = new UsersModel();
+        $user     = $model->find($id);
+
+        if($user->password != $value) {
+            $this->errors[$element] = $message;
+        }
+    }
+
     public function validUsername($element, $value, $message) {
         if(!preg_match('/[a-z0-9]+/', $value)) {
             $this->errors[$element] = $message;
         }
     }
+
     public function availableUsername($element, $value, $message) {
         $model  = new UsersModel();
         $result = $model->query("SELECT * FROM users WHERE username = ?", [
             $value
         ], true);
-        
+
         if($result) {
             $this->errors[$element] = $message;
         }

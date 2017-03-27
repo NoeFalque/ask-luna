@@ -22,13 +22,13 @@
                 <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a class="nav-link {{ page == 'account' ? 'active' : '' }}" href="#">Account</a>
+                            <a class="nav-link {{ page == 'account' ? 'active' : '' }}" href="{{ url('settings/account') }}">Account</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Privacy and safety</a>
+                            <a class="nav-link {{ page == 'security' ? 'active' : '' }}" href="{{ url('settings/security') }}">Privacy and safety</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile Picture</a>
+                            <a class="nav-link {{ page == 'picture' ? 'active' : '' }}" href="{{ url('settings/picture') }}">Profile Picture</a>
                         </li>
                     </ul>
                 </nav>
