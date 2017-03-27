@@ -109,4 +109,62 @@ class UsersController extends Controller {
         App::redirect();
     }
 
+    public function settingsAccount() {
+        if(!empty($_POST)) {
+            $username         = isset($_POST['username']) ? $_POST['username'] : '';
+            $email            = isset($_POST['email']) ? $_POST['email'] : '';
+
+            $validator = new FormValidator();
+            $validator->validUsername('username', $username, "Your username is not valid (no spaces, uppercase, special character)");
+            $validator->availableUsername('username', $username, "Your username is not available");
+            $validator->validEmail('email', $email, "Your email is not valid");
+
+            if($validator->isValid()) {
+                $model = new UsersModel();
+                $model->update($_SESSION['id'], [
+                    'username'   => $username,
+                    'email'      => $email
+                ]);
+
+                $_SESSION['auth']  = $username;
+                $_SESSION['email'] = $email;
+
+                $user  = $model->find($_SESSION['id']);
+
+                $this->render('pages/settings/account.twig', [
+                    'title'       => 'Settings - Account',
+                    'description' => '',
+                    'success'     => 'Your information have been updated.',
+                    'page'        => 'account',
+                    'user'        => $user
+                ]);
+            }
+
+            else {
+                $model = new UsersModel();
+                $user  = $model->find($_SESSION['id']);
+
+                $this->render('pages/settings/account.twig', [
+                    'title'       => 'Settings - Account',
+                    'description' => '',
+                    'errors'      => $validator->getErrors(),
+                    'page'        => 'account',
+                    'user'        => $user
+                ]);
+            }
+        }
+
+        else {
+            $model = new UsersModel();
+            $user  = $model->find($_SESSION['id']);
+
+            $this->render('pages/settings/account.twig', [
+                'title'       => 'Settings - Account',
+                'description' => '',
+                'page'        => 'account',
+                'user'        => $user
+            ]);
+        }
+    }
+
 }

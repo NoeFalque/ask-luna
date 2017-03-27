@@ -40,16 +40,16 @@ $router->post('/signup/', function() {
     $controller->signup();
 });
 
-$router->get('/settings/', function() {
+$router->get('/settings/account/', function() {
     App::secured();
     $controller = new \App\Controllers\UsersController();
-    $controller->settings();
+    $controller->settingsAccount();
 });
 
-$router->post('/settings/', function() {
+$router->post('/settings/account/', function() {
     App::secured();
     $controller = new \App\Controllers\UsersController();
-    $controller->settings();
+    $controller->settingsAccount();
 });
 
 $router->error(function() {
