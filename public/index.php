@@ -12,7 +12,8 @@ $router = new Router($_GET);
 
 
 $router->get('/', function() {
-    echo 'coucou';
+    $controller = new \App\Controllers\PostsController();
+    $controller->all();
 });
 
 $router->error(function() {
