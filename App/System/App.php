@@ -73,6 +73,7 @@ class App {
             self::$twig->addFunction($pad);
 
             isset($_SESSION['auth']) ? self::$twig->addGlobal('auth', $_SESSION['auth']) : self::$twig->addGlobal('auth', null);
+            isset($_SESSION['picture']) ? self::$twig->addGlobal('picture', $_SESSION['picture']) : self::$twig->addGlobal('picture', null);
         }
 
         return self::$twig;

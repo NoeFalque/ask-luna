@@ -64,6 +64,18 @@ $router->post('/settings/security/', function() {
     $controller->settingsSecurity();
 });
 
+$router->get('/settings/picture/', function() {
+    App::secured();
+    $controller = new \App\Controllers\UsersController();
+    $controller->settingsPicture();
+});
+
+$router->post('/settings/picture/', function() {
+    App::secured();
+    $controller = new \App\Controllers\UsersController();
+    $controller->settingsPicture();
+});
+
 $router->error(function() {
     App::error();
 });

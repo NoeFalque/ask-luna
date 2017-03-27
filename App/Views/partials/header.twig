@@ -37,7 +37,14 @@
                     </li>
                 {% else %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth }}</a>
+                        <a class="nav-link dropdown-toggle user-settings" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% if picture %}
+                                <img src="{{ url('uploads/' ~ picture) }}" alt="{{ auth }}">
+                            {% else %}
+                                <img src="{{ asset('img/default.png') }}" alt="Profile picture">
+                            {% endif %}
+                        </a>
+
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ url(auth) }}">{{ auth }}</a>
                             <a class="dropdown-item" href="{{ url('settings/account') }}">Settings</a>

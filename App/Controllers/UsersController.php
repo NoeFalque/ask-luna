@@ -6,6 +6,7 @@ use \App\System\Settings;
 use \App\System\FormValidator;
 use \App\Models\UsersModel;
 use \App\System\Mailer;
+use \App\System\ImageUpload;
 
 class UsersController extends Controller {
 
@@ -21,9 +22,10 @@ class UsersController extends Controller {
                     $username
                 ], true);
 
-                $_SESSION['auth']  = $username;
-                $_SESSION['id']    = $user->id;
-                $_SESSION['email'] = $user->email;
+                $_SESSION['auth']    = $username;
+                $_SESSION['id']      = $user->id;
+                $_SESSION['email']   = $user->email;
+                $_SESSION['picture'] = $user->picture;
 
                 App::redirect();
             }
@@ -206,6 +208,56 @@ class UsersController extends Controller {
                 'title'       => 'Settings - Security',
                 'description' => '',
                 'page'        => 'security'
+            ]);
+        }
+    }
+
+    public function settingsPicture() {
+        if(!empty($_FILES)) {
+            $media = isset($_FILES['media']) ? $_FILES['media'] : '';
+
+            $validator = new FormValidator();
+            $validator->validImage('media', $media, "You didn't provided a media or it is invalid");
+
+            if($validator->isValid()) {
+                $upload = new ImageUpload();
+                $model  = new UsersModel();
+
+                $old_picture = $model->find($_SESSION['id'])->picture;
+
+                if($upload->delete(__DIR__ . '/../../public/uploads/' . $old_picture)) {
+                    $media_url = $upload->upload($media);
+
+                    $model->update($_SESSION['id'], [
+                        'picture' => $media_url
+                    ]);
+
+                    $_SESSION['picture'] = $media_url;
+
+                    $this->render('pages/settings/picture.twig', [
+                        'title'       => 'Settings - Picture',
+                        'description' => '',
+                        'success'     => 'Your information have been updated.',
+                        'page'        => 'picture'
+                    ]);
+                }
+            }
+
+            else {
+                $this->render('pages/settings/picture.twig', [
+                    'title'       => 'Settings - Picture',
+                    'description' => '',
+                    'errors'      => $validator->getErrors(),
+                    'page'        => 'picture'
+                ]);
+            }
+        }
+
+        else {
+            $this->render('pages/settings/picture.twig', [
+                'title'       => 'Settings - Picture',
+                'description' => '',
+                'page'        => 'picture'
             ]);
         }
     }
