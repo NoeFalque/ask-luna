@@ -1,0 +1,22 @@
+environment: 'dev'
+
+dev:
+    name: 'Intensive space'
+    description: ''
+    url: 'http://localhost:8888/'
+    database:
+        username: 'root'
+        password: 'root'
+        name: 'space'
+        host: 'localhost'
+        type: 'mysql'
+    debug: true
+    twig:
+        cache: false
+    salt: '987k(dO9dj'
+    mail:
+        from: 'root@root.com'
+        host: 'localhost'
+        username: null
+        password: null
+        port: 1025
