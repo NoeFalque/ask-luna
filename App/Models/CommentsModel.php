@@ -6,7 +6,7 @@ class CommentsModel extends Model {
     protected $table = "comments";
 
     public function related($id) {
-        return $this->query("SELECT comments.id, comments.post_id, comments.content, comments.parent_id, comments.score, comments.date, comments.user_id, users.id AS user__id, users.username FROM {$this->table}
+        return $this->query("SELECT comments.id, comments.post_id, comments.content, comments.parent_id, comments.score, comments.misunderstand, comments.date, comments.user_id, users.id AS user__id, users.username FROM {$this->table}
                              LEFT JOIN users
                              ON comments.user_id = users.id
                              WHERE comments.post_id = ?
@@ -31,6 +31,22 @@ class CommentsModel extends Model {
         ]);
 
         return $score;
+    }
+
+    public function misunderstand($id) {
+        $misunderstand = $this->find($id)->misunderstand;
+        $misunderstand++;
+        $this->update($id, [
+            'misunderstand' => $misunderstand
+        ]);
+    }
+
+    public function deleteMisunderstand($id) {
+        $misunderstand = $this->find($id)->misunderstand;
+        $misunderstand--;
+        $this->update($id, [
+            'misunderstand' => $misunderstand
+        ]);
     }
 
 }

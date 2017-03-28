@@ -1,23 +1,18 @@
 <div class="col-md-12" style="margin-bottom: 60px; border: 1px solid #000;" data-id="{{ comment.id }}" data-level="{{ i }}">
     <p>{{ comment.content }}</p>
     <p>Score: <strong class="comment-score">{{ comment.score }}</strong></p>
-    <p>Misunderstand: <strong class="">{{ comment.misunderstand }}</strong></p>
     <p>by {{ comment.username }}</p>
 
     {% if i < 2 %}
-        <a href="#" class="btn btn-secondary comment-comment">Commment</a>
-        <a href="#" class="btn btn-primary comment-upvote">Upvote</a>
-        <a href="#" class="btn btn-danger comment-downvote">Downvote</a>
-        <a href="#" class="btn btn-primary comment-misunderstand">I don't understand</a>
-    {% else %}
-
+    <a href="#" class="btn btn-secondary comment-comment">Commment</a>
     {% endif %}
+    <a href="#" class="btn btn-primary comment-upvote">Upvote</a>
 </div>
 
 <div style="margin-left: 50px;">
     {% if comment.children %}
         {% for comment in comment.children %}
-            {% set i = i + 1 %}
+            {% set i = 1 %}
             {% include 'components/comment.twig' %}
         {% endfor %}
     {% endif %}

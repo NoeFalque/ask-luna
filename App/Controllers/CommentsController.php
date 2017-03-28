@@ -12,20 +12,85 @@ class CommentsController extends Controller {
         $model  = new VotesModel();
         $model2 = new CommentsModel();
 
-        if($model2->find($id)) {
-            if($model->already('comments', $id, $_SESSION['id'])) {
-                $model->downvote('comments', $id, $_SESSION['id']);
-                echo $model2->downvote($id);
-            }
-
-            else {
-                $model->upvote('comments', $id, $_SESSION['id']);
-                echo $model2->upvote($id);
-            }
+        if(!isset($_SESSION['id'])) {
+            echo 'Not connected';
+            exit;
         }
 
         else {
-            echo '';
+            if($model2->find($id)) {
+                if($model->alreadyUpvote('comments', $id, $_SESSION['id'])) {
+                    $model->deleteUpvote('comments', $id, $_SESSION['id']);
+                    echo $model2->downvote($id);
+                }
+
+                else {
+                    $model->upvote('comments', $id, $_SESSION['id']);
+                    echo $model2->upvote($id);
+                }
+            }
+
+            else {
+                echo '';
+            }
+        }
+    }
+
+    public function downvote($id) {
+        $model  = new VotesModel();
+        $model2 = new CommentsModel();
+
+        if(!isset($_SESSION['id'])) {
+            echo 'Not connected';
+            exit;
+        }
+
+        else {
+            if($model2->find($id)) {
+                if($model->alreadyDownvote('comments', $id, $_SESSION['id'])) {
+                    $model->deleteDownvote('comments', $id, $_SESSION['id']);
+                    echo $model2->upvote($id);
+                }
+
+                else {
+                    $model->downvote('comments', $id, $_SESSION['id']);
+                    echo $model2->downvote($id);
+                }
+            }
+
+            else {
+                echo '';
+            }
+        }
+    }
+
+    public function misunderstand($id) {
+        $model  = new VotesModel();
+        $model2 = new CommentsModel();
+
+        if(!isset($_SESSION['id'])) {
+            echo 'Not connected';
+            exit;
+        }
+
+        else {
+            if($model2->find($id)) {
+                if($model->alreadyMisunderstand('comments', $id, $_SESSION['id'])) {
+                    $model->deleteMisunderstand('comments', $id, $_SESSION['id']);
+                    $model2->deleteMisunderstand($id);
+                    echo 'ok';
+                }
+
+                else {
+                    $model->misunderstand('comments', $id, $_SESSION['id']);
+                    $model2->misunderstand($id);
+                    echo 'ok';
+                }
+            }
+
+            else {
+                echo '';
+            }
         }
     }
 

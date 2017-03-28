@@ -1,5 +1,7 @@
-let upvote_buttons  = document.querySelectorAll('.comment-upvote')
-let comment_buttons = document.querySelectorAll('.comment-comment')
+let upvote_buttons        = document.querySelectorAll('.comment-upvote')
+let downvote_buttons      = document.querySelectorAll('.comment-downvote')
+let misunderstand_buttons = document.querySelectorAll('.comment-misunderstand')
+let comment_buttons       = document.querySelectorAll('.comment-comment')
 
 upvote_buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -10,10 +12,83 @@ upvote_buttons.forEach((button) => {
         let xhttp = new XMLHttpRequest()
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                button.parentNode.querySelector('.comment-score').innerHTML = this.responseText
+                let res = this.responseText
+
+                if(res == 'Not connected') {
+                    window.location.replace('/login')
+                }
+
+                else {
+                    if(!isNaN(parseInt(res))) {
+                        button.parentNode.querySelector('.comment-score').innerHTML = this.responseText
+                    }
+
+                    else {
+                        console.log(res)
+                        alert('A problem occured, please try again.')
+                    }
+                }
             }
         }
         xhttp.open('GET', `/api/upvote/comments/${id}`, true)
+        xhttp.send()
+    })
+})
+
+downvote_buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        let id = button.parentNode.getAttribute('data-id')
+
+        let xhttp = new XMLHttpRequest()
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let res = this.responseText
+
+                if(res == 'Not connected') {
+                    window.location.replace('/login')
+                }
+
+                else {
+                    if(!isNaN(parseInt(res))) {
+                        button.parentNode.querySelector('.comment-score').innerHTML = this.responseText
+                    }
+
+                    else {
+                        alert('A problem occured, please try again.')
+                    }
+                }
+            }
+        }
+        xhttp.open('GET', `/api/downvote/comments/${id}`, true)
+        xhttp.send()
+    })
+})
+
+misunderstand_buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        let id = button.parentNode.getAttribute('data-id')
+
+        let xhttp = new XMLHttpRequest()
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let res = this.responseText
+
+                if(res == 'Not connected') {
+                    window.location.replace('/login')
+                }
+
+                else {
+                    if(res != 'ok') {
+                        alert('A problem occured, please try again.')
+                    }
+                }
+            }
+        }
+        xhttp.open('GET', `/api/misunderstand/comments/${id}`, true)
         xhttp.send()
     })
 })
@@ -27,8 +102,6 @@ comment_buttons.forEach((button) => {
 
         if(!parent.classList.contains('comment-reply-open')) {
             parent.classList.add('comment-reply-open')
-
-            console.log(parent)
 
             let element = document.createElement('div')
             element.classList.add('comment-reply-form')
@@ -50,17 +123,11 @@ comment_buttons.forEach((button) => {
             `
 
             parent.parentNode.insertBefore(element, parent.nextSibling)
-
-            let textarea = document.querySelector('.comment-reply-textarea')
-            textarea.addEventListener('blur', (element) => {
-                document.querySelector('.comment-reply-open').classList.remove('comment-reply-open')
-                document.querySelector('.comment-reply-form').remove()
-            })
         }
 
         else {
-            document.querySelector('.comment-reply-open').classList.remove('comment-reply-open')
-            document.querySelector('.comment-reply-form').remove()
+            parent.classList.remove('comment-reply-open')
+            parent.nextSibling.remove()
         }
     })
 })

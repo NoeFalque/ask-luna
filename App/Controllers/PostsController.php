@@ -46,13 +46,29 @@ class PostsController extends Controller {
         }
 
         if(!empty($_POST)) {
-            if(!empty($_POST['question']) && isset($_SESSION['id'])) {
+            if(!isset($_SESSION['id'])) {
+                header('Location: /login');
+                exit;
+            }
+
+            if(!empty($_POST['question'])) {
                 $model2 = new CommentsModel();
                 $model2->create([
                     'post_id' => $id,
                     'content' => $_POST['question'],
                     'date'    => date('Y-m-d H:i:s'),
                     'user_id' => $_SESSION['id']
+                ]);
+            }
+
+            else if(!empty($_POST['answer']) && !empty($_POST['parent_id'])) {
+                $model2 = new CommentsModel();
+                $model2->create([
+                    'post_id'   => $id,
+                    'content'   => $_POST['answer'],
+                    'date'      => date('Y-m-d H:i:s'),
+                    'user_id'   => $_SESSION['id'],
+                    'parent_id' => $_POST['parent_id']
                 ]);
             }
         }
