@@ -1,4 +1,4 @@
-<div class="col-md-12" style="margin-bottom: 60px; border: 1px solid #000;" data-id="{{ comment.id }}" data-level="{{ i }}">
+<div class="col-md-12" style="margin-bottom: 60px; border: 1px solid #000;" data-id="{{ comment.id }}" id="{{ comment.id }}" data-level="{{ i }}">
     <p>{{ comment.content|raw }}</p>
     <p>Score: <strong class="comment-score">{{ comment.score }}</strong></p>
     <p>by {{ comment.username }}</p>

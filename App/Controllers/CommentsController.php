@@ -27,6 +27,8 @@ class CommentsController extends Controller {
                 else {
                     $model->upvote('comments', $id, $_SESSION['id']);
                     echo $model2->upvote($id);
+
+                    App::getEmitter()->emit('Comments.upvote');
                 }
             }
 
@@ -84,6 +86,7 @@ class CommentsController extends Controller {
                 else {
                     $model->misunderstand('comments', $id, $_SESSION['id']);
                     $model2->misunderstand($id);
+                    App::getEmitter()->emit('Comments.misunderstand');
                     echo 'ok';
                 }
             }

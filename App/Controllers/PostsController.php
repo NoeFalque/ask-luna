@@ -94,6 +94,8 @@ class PostsController extends Controller {
                     'user_id'   => $_SESSION['id'],
                     'parent_id' => $_POST['parent_id']
                 ]);
+
+                App::getEmitter()->emit('Comments.add');
             }
         }
 
