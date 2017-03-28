@@ -18,3 +18,19 @@
         transform: translateY(-50%);
     }
 }
+
+.navbar-normal {
+    background-color: $black;
+}
+
+.navbar-scrolled {
+    background-color: $black;
+}
+
+.navbar-inverse .navbar-nav .nav-link {
+    color: $white;
+}
+
+.dropdown-menu {
+    border-radius: 6px;
+}

@@ -225,7 +225,26 @@ class UsersController extends Controller {
 
                 $old_picture = $model->find($_SESSION['id'])->picture;
 
-                if($upload->delete(__DIR__ . '/../../public/uploads/' . $old_picture)) {
+                if(!empty($old_picture)) {
+                    if($upload->delete(__DIR__ . '/../../public/uploads/' . $old_picture)) {
+                        $media_url = $upload->upload($media);
+
+                        $model->update($_SESSION['id'], [
+                            'picture' => $media_url
+                        ]);
+
+                        $_SESSION['picture'] = $media_url;
+
+                        $this->render('pages/settings/picture.twig', [
+                            'title'       => 'Settings - Picture',
+                            'description' => '',
+                            'success'     => 'Your information have been updated.',
+                            'page'        => 'picture'
+                        ]);
+                    }
+                }
+
+                else {
                     $media_url = $upload->upload($media);
 
                     $model->update($_SESSION['id'], [

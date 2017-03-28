@@ -16,13 +16,19 @@
 </head>
 
 <body>
+    {% include 'partials/header_index.twig' %}
 
-    {% block content %}
-    {% endblock %}
+    <div class="content content-top">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% include 'partials/footer.twig' %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/index.min.js') }}"></script>
     <script src="{{ asset('js/app.min.js') }}"></script>
     {% block extra_scripts %}
     {% endblock %}

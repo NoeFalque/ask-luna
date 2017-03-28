@@ -31,7 +31,7 @@ class PostsController extends Controller {
         $this->render('pages/index.twig', [
             'title'       => 'Welcome!',
             'description' => '',
-            'page'        => 'posts',
+            'page'        => 'index',
             'posts'       => $posts,
             'last_post'   => $last
         ]);

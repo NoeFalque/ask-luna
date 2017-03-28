@@ -1,18 +1,25 @@
-{% extends 'layouts/default.twig' %}
+{% extends 'layouts/index.twig' %}
 
 {% block content %}
 
-    <div class="jumbotron" style="background-image: url('{{ url('uploads/' ~ last_post.url_hd) }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="jumbotron" style="background-image: url('{{ url('uploads/' ~ last_post.url_hd) }}');">
         <div class="container">
-            <h1 class="display-3">{{ last_post.title }}</h1>
-            <p>{{ last_post.description }}</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            <span class="subtitle">Astronomic picture of the day</span>
+            <h1 class="title">{{ last_post.title }}</h1>
+            <ul class="facts">
+                <li class="fact"><span class="fact-important">130</span> loves</li>
+                <li class="fact"><span class="fact-important">220</span> question</li>
+                <li class="fact"><span class="fact-important">343</span> answers</li>
+            </ul>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Explore this case</a></p>
         </div>
     </div>
 
-    <div class="container">
-        <div class="col-md-12">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div class="hero">
+        <div class="container">
+            <div class="col-md-12">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            </div>
         </div>
     </div>
 

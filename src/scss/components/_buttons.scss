@@ -1,0 +1,12 @@
+.btn {
+    border: none;
+    border-radius: $border-radius;
+}
+
+.btn-primary {
+    background: $main-color;
+
+    &:hover {
+        background: $main-color-hover;
+    }
+}
