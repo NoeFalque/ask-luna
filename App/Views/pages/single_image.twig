@@ -2,10 +2,18 @@
 
 {% block content %}
 
+    <div class="single-zoom">
+        <div class="single-zoom-background">
+            <img src="{{ url('uploads/' ~ post.url_hd) }}" alt="{{ post.title }}">
+
+            <span class="zoom-close">X</span>
+        </div>
+    </div>
+
     <div class="jumbotron" style="background-image: url('{{ url('uploads/' ~ post.url_hd) }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="container">
             <h1 class="display-3">{{ post.title }}</h1>
-
+            <a href="#" class="zoom-action">View image</a>
         </div>
     </div>
 
@@ -40,5 +48,6 @@
 {% endblock %}
 
 {% block extra_scripts %}
+    <script src="{{ asset('js/single_post.min.js') }}"></script>
     <script src="{{ asset('js/posts_actions.min.js') }}"></script>
 {% endblock %}
