@@ -102,6 +102,11 @@ $router->get('/api/misunderstand/comments/:id', function($id) {
     $controller->misunderstand($id);
 });
 
+$router->get('/api/notifications', function() {
+    $controller = new \App\Controllers\NotificationsController();
+    $controller->mark();
+});
+
 $router->error(function() {
     App::error();
 });

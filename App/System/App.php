@@ -4,6 +4,7 @@ namespace App\System;
 use \App\System\Settings;
 use \App\Controllers\Controller;
 use \League\Event\Emitter;
+use \App\Models\NotificationsModel;
 
 class App {
 
@@ -75,12 +76,16 @@ class App {
                 else return Settings::getConfig()['name'];
             });
 
-
             self::$twig->addFunction($asset);
             self::$twig->addFunction($excerpt);
             self::$twig->addFunction($url);
             self::$twig->addFunction($title);
             self::$twig->addFunction($pad);
+
+            $model = new NotificationsModel();
+            $id = isset($_SESSION['id']) ? $_SESSION['id'] : '';
+            $notifications = $model->related($id);
+            self::$twig->addGlobal('notifications', $notifications);
 
             isset($_SESSION['auth']) ? self::$twig->addGlobal('auth', $_SESSION['auth']) : self::$twig->addGlobal('auth', null);
             isset($_SESSION['picture']) ? self::$twig->addGlobal('picture', $_SESSION['picture']) : self::$twig->addGlobal('picture', null);

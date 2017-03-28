@@ -38,15 +38,26 @@
                 {% else %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Notifs
+                            Notifs({{notifications|length}})
                         </a>
 
                         <div class="dropdown-menu">
+                            {% if notifications %}
+                                {% for notification in notifications %}
+                                    {% if loop.index0 < 3 %}
+                                        <a class="dropdown-item" href="{{ notification.url }}">{{ notification.message }}</a>
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% else %}
+                                <div class="dropdown-item">
+                                    No new notifications
+                                </div>
+                            {% endif %}
+
                             <div class="dropdown-item">
-                                fsjfeprfej
+                                <a href="#" class="toggle-notifications">Mark all as read</a>
                             </div>
-                            <a class="dropdown-item" href="Coucou">sfkjepofer</a>
-                            <a class="dropdown-item" href="{{ url('settings/account') }}">Sedsfdsgs</a>
                         </div>
                     </li>
 
