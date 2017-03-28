@@ -79,7 +79,7 @@ class PostsController extends Controller {
                 $model2 = new CommentsModel();
                 $model2->create([
                     'post_id' => $id,
-                    'content' => $_POST['question'],
+                    'content' => strip_tags($_POST['question'], '<a>'),
                     'date'    => date('Y-m-d H:i:s'),
                     'user_id' => $_SESSION['id']
                 ]);
@@ -89,7 +89,7 @@ class PostsController extends Controller {
                 $model2 = new CommentsModel();
                 $model2->create([
                     'post_id'   => $id,
-                    'content'   => $_POST['answer'],
+                    'content'   => strip_tags($_POST['answer'], '<a>'),
                     'date'      => date('Y-m-d H:i:s'),
                     'user_id'   => $_SESSION['id'],
                     'parent_id' => $_POST['parent_id']
