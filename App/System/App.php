@@ -3,11 +3,13 @@ namespace App\System;
 
 use \App\System\Settings;
 use \App\Controllers\Controller;
+use \League\Event\Emitter;
 
 class App {
 
     private static $database;
     private static $twig;
+    private static $emitter;
 
     public function __construct() {
         if(Settings::getConfig()['debug']) {
@@ -32,6 +34,14 @@ class App {
         }
 
         return self::$database;
+    }
+
+    public static function getEmitter() {
+        if(self::$emitter === null) {
+            self::$emitter = new Emitter();
+        }
+
+        return self::$emitter;
     }
 
     public static function getTwig() {

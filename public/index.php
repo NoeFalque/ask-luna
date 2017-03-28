@@ -10,6 +10,7 @@ session_start();
 $app    = new App();
 $router = new Router($_GET);
 
+require('../App/System/Listeners.php');
 
 $router->get('/', function() {
     $controller = new \App\Controllers\PostsController();
