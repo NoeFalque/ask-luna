@@ -1,4 +1,4 @@
-environment: 'dev'
+environment: 'noe'
 
 dev:
     name: 'Intensive space'
@@ -25,11 +25,11 @@ dev:
 noe:
     name: 'Intensive space'
     description: ''
-    url: 'http://localhost:8888/'
+    url: 'http://localhost/H2/Dev/22-intensive-space/intensive-space/public/'
     database:
         username: 'root'
         password: 'root'
-        name: 'space'
+        name: 'intensive-space'
         host: 'localhost'
         type: 'mysql'
     debug: true
