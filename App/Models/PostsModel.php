@@ -10,7 +10,11 @@ class PostsModel extends Model {
     }
 
     public function last() {
-        return $this->query("SELECT * FROM {$this->table} LIMIT 1", [], true);
+        return $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT 1", [], true);
+    }
+
+    public function latest($count) {
+        return $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT $count", []);
     }
 
 }

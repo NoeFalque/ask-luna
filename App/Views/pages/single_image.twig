@@ -1,0 +1,44 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+
+    <div class="jumbotron" style="background-image: url('{{ url('uploads/' ~ post.url_hd) }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="container">
+            <h1 class="display-3">{{ post.title }}</h1>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-md-12">
+            <p>{{ post.description }}</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Let's go deeper</h2>
+
+        {% for comment in comments %}
+            {% set i = 0 %}
+            {% include 'components/comment.twig' %}
+        {% endfor %}
+
+        <div>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="question">Ask your question</label>
+                    <textarea name="question" id="question" class="form-control" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Send my question</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{{ asset('js/posts_actions.min.js') }}"></script>
+{% endblock %}

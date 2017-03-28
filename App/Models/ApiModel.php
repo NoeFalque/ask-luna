@@ -11,25 +11,43 @@ class ApiModel extends Model {
 
     public function get($date) {
         $key     = Settings::getConfig()['api_key'];
-        $picture = json_decode(file_get_contents("https://api.nasa.gov/planetary/apod?api_key=$key&date=$date"));
+        $media   = json_decode(file_get_contents("https://api.nasa.gov/planetary/apod?api_key=$key&date=$date"));
 
-        $title       = $picture->title;
-        $description = $picture->explanation;
-        $date        = $picture->date;
-        $media       = $picture->url;
-        $media_hd    = $picture->hdurl;
+        if($media->media_type != 'image') {
+            $title       = $media->title;
+            $description = $media->explanation;
+            $date        = $media->date;
+            $url         = $media->url;
 
-        $uploader = new ImageUpload();
-        $file     = $uploader->add($media);
-        $file_hd  = $uploader->add($media_hd);
+            $this->create([
+                'title'       => $title,
+                'description' => $description,
+                'date'        => $date,
+                'media_type'  => 'video',
+                'url'         => $url
+            ]);
+        }
 
-        $this->create([
-            'title'       => $title,
-            'description' => $description,
-            'date'        => $date,
-            'media'       => $file,
-            'media_hd'    => $file_hd
-        ]);
+        else {
+            $title       = $media->title;
+            $description = $media->explanation;
+            $date        = $media->date;
+            $url         = $media->url;
+            $url_hd      = $media->hdurl;
+
+            $uploader = new ImageUpload();
+            $file     = $uploader->add($url);
+            $file_hd  = $uploader->add($url_hd);
+
+            $this->create([
+                'title'       => $title,
+                'description' => $description,
+                'date'        => $date,
+                'media_type'  => 'image',
+                'url'         => $file,
+                'url_hd'      => $file_hd
+            ]);
+        }
     }
 
 }

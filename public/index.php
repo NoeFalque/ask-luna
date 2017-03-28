@@ -40,6 +40,16 @@ $router->post('/signup/', function() {
     $controller->signup();
 });
 
+$router->get('/picture-of-the-day/:id', function($id) {
+    $controller = new \App\Controllers\PostsController();
+    $controller->single($id);
+});
+
+$router->post('/picture-of-the-day/:id', function($id) {
+    $controller = new \App\Controllers\PostsController();
+    $controller->single($id);
+});
+
 $router->get('/settings/account/', function() {
     App::secured();
     $controller = new \App\Controllers\UsersController();
@@ -74,6 +84,11 @@ $router->post('/settings/picture/', function() {
     App::secured();
     $controller = new \App\Controllers\UsersController();
     $controller->settingsPicture();
+});
+
+$router->get('/api/upvote/comments/:id', function($id) {
+    $controller = new \App\Controllers\CommentsController();
+    $controller->upvote($id);
 });
 
 $router->error(function() {
