@@ -5,6 +5,7 @@ use \App\System\App;
 use \App\System\ImageUpload;
 use \App\Models\PostsModel;
 use \App\Models\CommentsModel;
+use \App\Models\MediasModel;
 use \App\Models\ApiModel;
 use \App\System\FormValidator;
 
@@ -45,13 +46,36 @@ class PostsController extends Controller {
             exit;
         }
 
-        if(!empty($_POST)) {
+        if(!empty($_POST) || !empty($_FILES)) {
             if(!isset($_SESSION['id'])) {
                 header('Location: /login');
                 exit;
             }
 
-            if(!empty($_POST['question'])) {
+            if(!empty($_FILES['media'])) {
+                $validator = new FormValidator();
+                $media     = $_FILES['media'];
+
+                $validator->validImage('media', $media, "You didn't provided a media or it is invalid");
+                if($validator->isValid()) {
+                    $upload = new ImageUpload();
+                    $media_url = $upload->upload($media);
+
+                    $model = new MediasModel();
+                    $model->create([
+                        'post_id' => $id,
+                        'user_id' => $_SESSION['id'],
+                        'media'   => $media_url,
+                        'date'    => date('Y-m-d H:i:s')
+                    ]);
+                }
+
+                else {
+                    $errors = $validator->getErrors();
+                }
+            }
+
+            else if(!empty($_POST['question'])) {
                 $model2 = new CommentsModel();
                 $model2->create([
                     'post_id' => $id,
@@ -89,13 +113,18 @@ class PostsController extends Controller {
             }
         }
 
+        $model3 = new MediasModel();
+        $medias = $model3->related($id);
+
         if($post->media_type == 'image') {
             $this->render('pages/single_image.twig', [
                 'title'       => 'Picture of the day',
                 'description' => '',
                 'page'        => 'post',
                 'post'        => $post,
-                'comments'    => $comments
+                'comments'    => $comments,
+                'medias'      => $medias,
+                'errors'      => isset($errors) ? $errors : []
             ]);
         }
 
