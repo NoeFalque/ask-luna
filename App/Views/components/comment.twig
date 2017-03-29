@@ -1,17 +1,31 @@
-<div class="col-md-12" style="margin-bottom: 60px; border: 1px solid #000;" data-id="{{ comment.id }}" id="{{ comment.id }}" data-level="{{ i }}">
-    <p>{{ comment.content|raw }}</p>
-    <p>Score: <strong class="comment-score">{{ comment.score }}</strong></p>
-    <p>Misunderstand: <strong class="">{{ comment.misunderstand }}</strong></p>
-    <p>by {{ comment.username }}</p>
+<div class="single-answer" data-id="{{ comment.id }}" id="{{ comment.id }}" data-level="{{ i }}">
+    <div class="single-answer-answer">
+        <p>{{ comment.content|raw }}</p>
+    </div>
 
-    {% if i < 2 %}
-        <a href="#" class="btn btn-secondary comment-comment">Commment</a>
-        <a href="#" class="btn btn-primary comment-upvote">Upvote</a>
-        <a href="#" class="btn btn-danger comment-downvote">Downvote</a>
-        <a href="#" class="btn btn-primary comment-misunderstand">I don't understand</a>
-    {% else %}
+    <div class="single-answer-infos">
+        <div class="single-answer-user">
+            <div class="single-answer-user-picture">
+                <img src="{{ url('uploads/' ~ comment.picture) }}" alt="{{ comment.username }}">
+            </div>
 
-    {% endif %}
+            <div class="single-answer-user-infos">
+                <p>{{ comment.username }}</p>
+                <p class="date-from">{{ comment.date }}</p>
+            </div>
+        </div>
+
+        <div class="single-answer-actions">
+            {% if i < 2 %}
+                <strong class="comment-score">{{ comment.score }}</strong>
+                <a href="#" class="btn btn-secondary comment-comment" data-id="{{ comment.id }}"><i class="fa fa-reply" aria-hidden="true"></i></a>
+                <a href="#" class="btn btn-primary comment-upvote" data-id="{{ comment.id }}"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                <a href="#" class="btn btn-danger comment-downvote" data-id="{{ comment.id }}"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+            {% endif %}
+        </div>
+    </div>
+
+
 </div>
 
 <div style="margin-left: 50px;">

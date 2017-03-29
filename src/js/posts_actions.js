@@ -7,7 +7,7 @@ upvote_buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         e.preventDefault()
 
-        let id = button.parentNode.getAttribute('data-id')
+        let id = button.getAttribute('data-id')
 
         let xhttp = new XMLHttpRequest()
         xhttp.onreadystatechange = function() {
@@ -39,7 +39,7 @@ downvote_buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         e.preventDefault()
 
-        let id = button.parentNode.getAttribute('data-id')
+        let id = button.getAttribute('data-id')
 
         let xhttp = new XMLHttpRequest()
         xhttp.onreadystatechange = function() {
@@ -66,39 +66,14 @@ downvote_buttons.forEach((button) => {
     })
 })
 
-misunderstand_buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        let id = button.parentNode.getAttribute('data-id')
-
-        let xhttp = new XMLHttpRequest()
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let res = this.responseText
-
-                if(res == 'Not connected') {
-                    window.location.replace('/login')
-                }
-
-                else {
-                    if(res != 'ok') {
-                        alert('A problem occured, please try again.')
-                    }
-                }
-            }
-        }
-        xhttp.open('GET', `/api/misunderstand/comments/${id}`, true)
-        xhttp.send()
-    })
-})
-
 comment_buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         e.preventDefault()
 
         let parent = button.parentNode
-        let id     = parent.getAttribute('data-id')
+        let id     = button.getAttribute('data-id')
+
+        parent = parent.parentNode.parentNode
 
         if(!parent.classList.contains('comment-reply-open')) {
             parent.classList.add('comment-reply-open')
@@ -107,21 +82,12 @@ comment_buttons.forEach((button) => {
             element.classList.add('comment-reply-form')
 
             element.innerHTML = `
-                <div class="col-md-12">
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label for="answer">Help answering this question</label>
-                            <textarea name="answer" id="answer" class="form-control comment-reply-textarea" required autofocus></textarea>
-                            <input type="hidden" name="parent_id" value="${id}">
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Send my answer</button>
-                        </div>
-                    </form>
-                </div>
+                <form action="#" method="POST">
+                    <input type="text" name="answer" id="answer" class="form-control comment-reply-textarea" required autofocus>
+                    <input type="hidden" name="parent_id" value="${id}">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
             `
-
             parent.parentNode.insertBefore(element, parent.nextSibling)
         }
 

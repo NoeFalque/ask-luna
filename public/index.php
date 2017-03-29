@@ -97,11 +97,6 @@ $router->get('/api/downvote/comments/:id', function($id) {
     $controller->downvote($id);
 });
 
-$router->get('/api/misunderstand/comments/:id', function($id) {
-    $controller = new \App\Controllers\CommentsController();
-    $controller->misunderstand($id);
-});
-
 $router->get('/api/notifications', function() {
     $controller = new \App\Controllers\NotificationsController();
     $controller->mark();

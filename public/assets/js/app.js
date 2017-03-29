@@ -61,3 +61,10 @@ dates_formatted.forEach(function (date) {
     var date_date = date.innerHTML;
     date.innerHTML = moment(date_date).format('MMMM Do YYYY');
 });
+
+var dates_from = document.querySelectorAll('.date-from');
+
+dates_from.forEach(function (date) {
+    var date_date = date.innerHTML;
+    date.innerHTML = moment(date_date).fromNow();
+});

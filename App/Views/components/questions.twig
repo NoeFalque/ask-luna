@@ -1,15 +1,30 @@
-<div class="col-md-12" style="margin-bottom: 60px; border: 1px solid #000;" data-id="{{ comment.id }}" id="{{ comment.id }}" data-level="{{ i }}">
-    <p>{{ comment.content|raw }}</p>
-    <p>Score: <strong class="comment-score">{{ comment.score }}</strong></p>
-    <p>by {{ comment.username }}</p>
+<div class="single-question" data-id="{{ comment.id }}" id="{{ comment.id }}" data-level="{{ i }}">
+    <div class="single-question-question">
+        <h4>{{ comment.content|raw }}</h4>
+    </div>
 
-    {% if i < 2 %}
-    <a href="#" class="btn btn-secondary comment-comment">Commment</a>
-    {% endif %}
-    <a href="#" class="btn btn-primary comment-upvote">Upvote</a>
+    <div class="single-question-infos">
+        <div class="single-question-user">
+            <div class="single-question-user-picture">
+                <img src="{{ url('uploads/' ~ comment.picture) }}" alt="{{ comment.username }}">
+            </div>
+
+            <div class="single-question-user-infos">
+                <p>{{ comment.username }}</p>
+                <p class="date-from">{{ comment.date }}</p>
+            </div>
+        </div>
+
+        <div class="single-question-actions">
+            {% if i < 2 %}
+                <a href="#" class="btn btn-secondary comment-comment" data-id="{{ comment.id }}"><i class="fa fa-reply" aria-hidden="true"></i></a>
+            {% endif %}
+            <a href="#" class="btn btn-primary comment-upvote" data-id="{{ comment.id }}"><i class="fa fa-heart" aria-hidden="true"></i></a><strong class="comment-score">{{ comment.score }}</strong>
+        </div>
+    </div>
 </div>
 
-<div style="margin-left: 50px;">
+<div class="single-question-answers" style="margin-left: 50px;">
     {% if comment.children %}
         {% for comment in comment.children %}
             {% set i = 1 %}

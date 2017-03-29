@@ -62,3 +62,10 @@ dates_formatted.forEach((date) => {
     let date_date  = date.innerHTML
     date.innerHTML = moment(date_date).format('MMMM Do YYYY')
 })
+
+let dates_from = document.querySelectorAll('.date-from')
+
+dates_from.forEach((date) => {
+    let date_date  = date.innerHTML
+    date.innerHTML = moment(date_date).fromNow()
+})

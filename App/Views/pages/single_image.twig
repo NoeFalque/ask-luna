@@ -33,28 +33,62 @@
             <span class="subtitle date-formatted">{{ post.date }}</span>
             <h1 class="title">{{ post.title }}</h1>
             <p class="description">{{ post.description }}</p>
+
+            <div class="single-introduction-ask">
+                <div class="single-introduction-ask-title">
+                    <h3>Got any question?</h3>
+                </div>
+
+                <div class="single-introduction-ask-form">
+                    <form action="#" method="POST">
+                        <div class="single-introduction-ask-group">
+                            {% if picture %}
+                                <img src="{{ url('uploads/' ~ picture) }}" alt="{{ auth }}" class="single-introduction-ask-picture">
+                            {% else %}
+                                <img src="{{ asset('img/default.png') }}" alt="Profile picture" class="single-introduction-ask-picture">
+                            {% endif %}
+                        </div>
+
+                        <div class="single-introduction-ask-group">
+                            <input type="text" name="question" id="question" value="" required class="form-control single-introduction-ask-input" placeholder="Where is Space exactly?">
+                        </div>
+
+                        <div class="single-introduction-ask-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="container">
-        <h2>Let's go deeper</h2>
+        <div class="single-content">
+            <div class="col-md-4">
+                <div class="single-navigation">
+                    <div class="single-navigation-picture" style="background-image: url('{{ url('uploads/' ~ post.url_hd) }}');">
 
-        {% for comment in comments %}
-            {% set i = 0 %}
-            {% include 'components/questions.twig' %}
-        {% endfor %}
+                    </div>
 
-        <div>
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label for="question">Ask your question</label>
-                    <textarea name="question" id="question" class="form-control" required></textarea>
+                    <div class="single-navigation-title">
+                        <h3>{{ post.title }}</h3>
+                    </div>
+
+                    <div class="single-navigation-buttons">
+                        <a href="#" class="single-navigation-button">Previous</a>
+                        <a href="#" class="single-navigation-button">Next</a>
+                    </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Send my question</button>
+            <div class="col-md-8">
+                <div class="single-interactions">
+                    {% for comment in comments %}
+                        {% set i = 0 %}
+                        {% include 'components/questions.twig' %}
+                    {% endfor %}
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
