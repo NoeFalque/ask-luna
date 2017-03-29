@@ -6,6 +6,7 @@ use \App\System\Settings;
 use \App\System\ImageUpload;
 use \App\Models\PostsModel;
 use \App\Models\CommentsModel;
+use \App\Models\VotesModel;
 use \App\Models\MediasModel;
 use \App\Models\ApiModel;
 use \App\System\FormValidator;
@@ -125,6 +126,22 @@ class PostsController extends Controller {
 
         $model2   = new CommentsModel();
         $comments = $model2->related($id);
+
+        foreach ($comments as $comment) {
+            $model = new VotesModel();
+
+            if($model->alreadyUpvote('comments', $comment->id, $_SESSION['id']) != false) {
+                $comment->upvote = 'true';
+            } else {
+                $comment->upvote = 'false';
+            }
+
+            if($model->alreadyDownvote('comments', $comment->id, $_SESSION['id']) != false) {
+                $comment->downvote = 'true';
+            } else {
+                $comment->downvote = 'false';
+            }
+        }
 
         $comments_by_id = [];
 

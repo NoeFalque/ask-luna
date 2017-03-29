@@ -11,9 +11,8 @@
             <span class="subtitle">Astronomy picture of the day</span>
             <h1 class="title">{{ last_post.title }}</h1>
             <ul class="facts">
-                <li class="fact"><span class="fact-important">130</span> likes</li>
-                <li class="fact"><span class="fact-important">220</span> questions</li>
-                <li class="fact"><span class="fact-important">343</span> answers</li>
+                <li class="fact"><span class="fact-important">{{ last_post.questions }}</span> questions</li>
+                <li class="fact"><span class="fact-important">{{ last_post.answers }}</span> answers</li>
             </ul>
             <div class="jumbotron-actions">
                 <ul>

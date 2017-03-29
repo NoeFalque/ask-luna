@@ -10,7 +10,12 @@ class PostsModel extends Model {
     }
 
     public function last() {
-        return $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT 1", [], true);
+        $result = $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT 1", [], true);
+
+        $result->questions = count($this->query("SELECT * FROM comments WHERE post_id = ? AND parent_id = 0", [$result->id]));
+        $result->answers   = count($this->query("SELECT * FROM comments WHERE post_id = ? AND parent_id != 0", [$result->id]));
+
+        return $result;
     }
 
     public function search($query) {
