@@ -240,6 +240,7 @@ class UsersController extends Controller {
 
             $validator = new FormValidator();
             $validator->validImage('media', $media, "You didn't provided a media or it is invalid");
+            $validator->squareImage('media', $media, "Your media must have the same width and height");
 
             if($validator->isValid()) {
                 $upload = new ImageUpload();

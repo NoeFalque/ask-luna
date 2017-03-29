@@ -95,6 +95,12 @@ class FormValidator {
         }
     }
 
+    public function squareImage($element, $value, $message) {
+        if(getimagesize($value['tmp_name'])[0] != getimagesize($value['tmp_name'])[1]) {
+            $this->errors[$element] = $message;
+        }
+    }
+
     public function isValid() {
         if(empty($this->errors)) return true;
         else return false;
