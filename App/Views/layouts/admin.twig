@@ -18,32 +18,41 @@
 <body>
     {% include 'partials/header.twig' %}
 
-        <div class="container-fluid">
-            <div class="row">
-                <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link {{ page == 'account' ? 'active' : '' }}" href="{{ url('settings/account') }}">Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ page == 'security' ? 'active' : '' }}" href="{{ url('settings/security') }}">Privacy and safety</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ page == 'picture' ? 'active' : '' }}" href="{{ url('settings/picture') }}">Profile Picture</a>
-                        </li>
-                    </ul>
-                </nav>
+        <div class="content">
+            <div class="container">
+                <div class="settings">
+                    <div class="col-md-4">
+                        <div class="settings-sidebar">
+                            <nav class="settings-sidebar-nav">
+                                <ul>
+                                    <li class="settings-sidebar-nav-item">
+                                        <a class="settings-sidebar-nav-link {{ page == 'account' ? 'active' : '' }}" href="{{ url('settings/account') }}">Account</a>
+                                    </li>
+                                    <li class="settings-sidebar-nav-item">
+                                        <a class="settings-sidebar-nav-link {{ page == 'security' ? 'active' : '' }}" href="{{ url('settings/security') }}">Privacy and safety</a>
+                                    </li>
+                                    <li class="settings-sidebar-nav-item">
+                                        <a class="settings-sidebar-nav-link {{ page == 'picture' ? 'active' : '' }}" href="{{ url('settings/picture') }}">Profile Picture</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
 
-                <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 content admin">
-                    {% block content %}
-                    {% endblock %}
-                </main>
+                    <div class="col-md-8">
+                        <div class="settings-content">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/moment.js') }}"></script>
         <script src="{{ asset('js/app.min.js') }}"></script>
         {% block extra_scripts %}
         {% endblock %}

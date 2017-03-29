@@ -1,0 +1,34 @@
+.section {
+    padding: 60px 0px;
+}
+
+.section-title {
+    padding-left: 20px;
+    font-size: 1.4em;
+
+    b {
+        color: $main-color;
+        font-weight: 400;
+    }
+}
+
+.section-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section-grid-item {
+  display: flex;
+  padding: 20px;
+  width: 100%;
+}
+
+.section-grid-item-6 {
+    width: 50%;
+}
+
+@media screen and (max-width: $tablet) {
+    .section-grid-item-6 {
+        width: 100%;
+    }
+}

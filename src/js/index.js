@@ -1,11 +1,11 @@
-let navbar = document.querySelector('.navbar')
+let header = document.querySelector('.header')
 
 window.addEventListener('scroll', () => {
     if(window.scrollY >= 30) {
-        navbar.classList.add('navbar-scrolled')
+        header.classList.add('header-scrolled')
     }
 
     else {
-        navbar.classList.remove('navbar-scrolled')
+        header.classList.remove('header-scrolled')
     }
 })

@@ -4,7 +4,7 @@
 @import 'tools/variables';
 
 // Vendors
-@import 'vendor/bootstrap/bootstrap';
+@import 'vendor/responsive';
 
 // Base
 @import 'base/base';
@@ -12,6 +12,8 @@
 // Components
 @import 'components/buttons';
 @import 'components/form';
+@import 'components/sections';
+@import 'components/cards';
 @import 'components/admin';
 @import 'components/jumbotron';
 @import 'components/hero';
@@ -19,3 +21,7 @@
 
 // Layout
 @import 'layout/header';
+@import 'layout/loader';
+
+// Pages
+@import 'pages/settings';

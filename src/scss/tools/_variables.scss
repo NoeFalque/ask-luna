@@ -9,16 +9,17 @@ $sidebar-width: 270px;
 
 // Colors
 $white: #ffffff;
+$white-2: #F9F9F9;
 
-$grey: #F0F3F7;
+$grey: #a6a6a6;
 $light-grey: #E6EAED;
 $light-grey-2: #87A2BA;
 
 $black: #141516;
 $black-2: #90A0B3;
 
-$main-color: #005DFF;
-$main-color-hover: #0051de;
+$main-color: #004CC6;
+$main-color-hover: #0749b3;
 
 $gradient: linear-gradient(45deg, #002F67, #005DFE);
 
@@ -36,14 +37,14 @@ $success-color-hover: #2ab665;
 
 // Box shadow
 $box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.05);
-$box-shadow-action: 0px 0px 20px 0px rgba(0, 0, 0, 0.14);
-$box-shadow-action-hover: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+$box-shadow-2: 0px 4px 30px 0px rgba(0, 0, 0, 0.14);
 
 // Easing
 $easing: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
 // Border radius
 $border-radius: 30px;
+$border-radius-2: 6px;
 
 // Transition
 $transition: all 0.3s ease-in-out;
@@ -53,7 +54,7 @@ $text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 
 // Breakpoints
 $phone: 544px;
-$tablet: 768px;
+$tablet: 840px;
 $desktop: 992px;
 $wide-desktop: 1200px;
 

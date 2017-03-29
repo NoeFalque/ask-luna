@@ -10,16 +10,29 @@
         </div>
     </div>
 
-    <div class="jumbotron" style="background-image: url('{{ url('uploads/' ~ post.url_hd) }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-        <div class="container">
-            <h1 class="display-3">{{ post.title }}</h1>
-            <a href="#" class="zoom-action">View image</a>
+    <div class="jumbotron single-jumbotron" style="background-image: url('{{ url('uploads/' ~ post.url_hd) }}');">
+        <div class="jumbotron-actions">
+            <ul>
+                <li class="jumbotron-actions-share">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url_encode(url('picture-of-the-day/' ~ post.id)) }}" target="_blank" title="Share on Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </li>
+
+                <li class="jumbotron-actions-share">
+                    <a href="http://twitter.com/share?url={{ url_encode(url('picture-of-the-day/' ~ post.id)) }}" target="_blank" title="Share on Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </li>
+
+                <li>
+                    <a href="#" class="zoom-action">View image</a>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <div class="container">
-        <div class="col-md-12">
-            <p>{{ post.description }}</p>
+    <div class="single-introduction">
+        <div class="single-introduction-container">
+            <span class="subtitle date-formatted">{{ post.date }}</span>
+            <h1 class="title">{{ post.title }}</h1>
+            <p class="description">{{ post.description }}</p>
         </div>
     </div>
 

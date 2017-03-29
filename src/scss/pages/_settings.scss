@@ -1,0 +1,43 @@
+.settings {
+    width: 100%;
+    margin-top: 110px;
+}
+
+.settings-sidebar {
+    background: $white;
+    box-shadow: $box-shadow;
+    min-height: 500px;
+    border-radius: $border-radius-2;
+    padding: 30px;
+}
+
+.settings-sidebar-nav ul {
+    padding: 0;
+}
+
+.settings-sidebar-nav-item {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.settings-sidebar-nav-link {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: $black;
+
+    &.active {
+        color: $main-color;
+    }
+}
+
+.settings-content {
+    background: $white;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius-2;
+    padding: 30px;
+
+    h1 {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+}

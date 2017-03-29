@@ -1,11 +1,11 @@
 'use strict';
 
-var navbar = document.querySelector('.navbar');
+var header = document.querySelector('.header');
 
 window.addEventListener('scroll', function () {
     if (window.scrollY >= 30) {
-        navbar.classList.add('navbar-scrolled');
+        header.classList.add('header-scrolled');
     } else {
-        navbar.classList.remove('navbar-scrolled');
+        header.classList.remove('header-scrolled');
     }
 });

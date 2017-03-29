@@ -1,86 +1,95 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top navbar-normal">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="{{ url('') }}">Navbar</a>
+<div class="loader loader-expanded"></div>
+<div class="loader-background"></div>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
+<header class="header header-global">
+    <div class="header-logo">
+        <a href="{{ url('') }}">
+            Website name
+        </a>
+    </div>
 
-        <div class="my-2 my-lg-0">
-            <ul class="navbar-nav">
-                {% if not auth %}
+    <div class="header-toggle">
+        <a href="#" class="header-nav-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    </div>
+
+    <div class="header-nav">
+        <a href="#" class="header-nav-close">X</a>
+        <div>
+            <nav class="nav">
+                <ul>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('login') }}">Log in</a>
+                        <a href="#" class="nav-link">Item 1</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('signup') }}">Sign up</a>
+                        <a href="#" class="nav-link">Item 2</a>
                     </li>
-                {% else %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Notifs({{notifications|length}})
-                        </a>
 
-                        <div class="dropdown-menu">
-                            {% if notifications %}
-                                {% for notification in notifications %}
-                                    {% if loop.index0 < 3 %}
-                                        <a class="dropdown-item" href="{{ notification.url }}">{{ notification.message }}</a>
-                                    {% endif %}
-                                {% endfor %}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Item 3</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
-                            {% else %}
+        <div>
+            <nav class="nav">
+                <ul>
+                    {% if not auth %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('login') }}">Log in</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('signup') }}">Sign up</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#">
+                                Notifs({{notifications|length}})
+                            </a>
+
+                            <div class="dropdown-menu">
+                                {% if notifications %}
+                                    {% for notification in notifications %}
+                                        {% if loop.index0 < 3 %}
+                                            <a class="dropdown-item" href="{{ notification.url }}">{{ notification.message }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                {% else %}
+                                    <div class="dropdown-item">
+                                        No new notifications
+                                    </div>
+                                {% endif %}
+
                                 <div class="dropdown-item">
-                                    No new notifications
+                                    <a href="#" class="toggle-notifications">Mark all as read</a>
                                 </div>
-                            {% endif %}
-
-                            <div class="dropdown-item">
-                                <a href="#" class="toggle-notifications">Mark all as read</a>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle user-settings" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {% if picture %}
-                                <img src="{{ url('uploads/' ~ picture) }}" alt="{{ auth }}">
-                            {% else %}
-                                <img src="{{ asset('img/default.png') }}" alt="Profile picture">
-                            {% endif %}
-                        </a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle user-settings" href="#">
+                                {% if picture %}
+                                    <img src="{{ url('uploads/' ~ picture) }}" alt="{{ auth }}" class="header-nav-picture">
+                                {% else %}
+                                    <img src="{{ asset('img/default.png') }}" alt="Profile picture" class="header-nav-picture">
+                                {% endif %}
+                            </a>
 
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ url(auth) }}">{{ auth }}</a>
-                            <a class="dropdown-item" href="{{ url('settings/account') }}">Settings</a>
-                        </div>
-                    </li>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ url(auth) }}">{{ auth }}</a>
+                                <a class="dropdown-item" href="{{ url('settings/account') }}">Settings</a>
+                            </div>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('logout') }}">Log out</a>
-                    </li>
-                {% endif %}
-            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('logout') }}">Log out</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
     </div>
-</nav>
+</header>

@@ -3,7 +3,11 @@
 {% block content %}
 
     <div class="jumbotron" style="background-image: url('{{ url('uploads/' ~ last_post.url_hd) }}');">
-        <div class="container">
+        <div class="jumbotron-background">
+
+        </div>
+
+        <div class="container jumbotron-content">
             <span class="subtitle">Astronomic picture of the day</span>
             <h1 class="title">{{ last_post.title }}</h1>
             <ul class="facts">
@@ -11,14 +15,90 @@
                 <li class="fact"><span class="fact-important">220</span> question</li>
                 <li class="fact"><span class="fact-important">343</span> answers</li>
             </ul>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Explore this case</a></p>
+            <p><a class="btn btn-primary btn-lg" href="{{ url('picture-of-the-day/' ~ last_post.id) }}" role="button">Explore this case</a></p>
         </div>
     </div>
 
     <div class="hero">
         <div class="container">
             <div class="col-md-12">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                <p>All your questions about space, answered every day with one image and one topic.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-title">
+                <h2><b>What people</b> are asking</h2>
+            </div>
+
+            <div class="section-grid">
+                <div class="section-grid-item section-grid-item-6">
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-image" style="background-image: url('{{ url('uploads/' ~ last_post.url_hd) }}');">
+
+                            </div>
+
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <h3>The Basics Of Buying A Telescope dezldjzef fzefij fezfojerpfjer ferfjeprfjer?</h3>
+                                </div>
+
+                                <div class="card-infos">
+                                    <div class="card-author">
+                                        <img src="{{ asset('img/default.png') }}" alt="" class="card-author-picture">
+
+                                        <div class="card-author-details">
+                                            <span class="card-author-name">Lester Stephens</span>
+                                            <span class="card-date">4 hours ago</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-reactions">
+                                        <div class="card-reaction">
+                                            <span>28 likes</span>
+                                            <span>42 answers</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-grid-item section-grid-item-6">
+                    <div class="card">
+                        <div class="card-image" style="background-image: url('{{ url('uploads/' ~ last_post.url_hd) }}');">
+
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-title">
+                                <h3>The Basics Of Buying A Telescope ?</h3>
+                            </div>
+
+                            <div class="card-infos">
+                                <div class="card-author">
+                                    <img src="{{ asset('img/default.png') }}" alt="" class="card-author-picture">
+
+                                    <div class="card-author-details">
+                                        <span class="card-author-name">Lester Stephens</span>
+                                        <span class="card-date">4 hours ago</span>
+                                    </div>
+                                </div>
+
+                                <div class="card-reactions">
+                                    <div class="card-reaction">
+                                        <span>28 likes</span>
+                                        <span>42 answers</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

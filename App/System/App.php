@@ -76,11 +76,16 @@ class App {
                 else return Settings::getConfig()['name'];
             });
 
+            $urlencode = new \Twig_Function('url_encode', function($url) {
+                return rawurlencode($url);
+            });
+
             self::$twig->addFunction($asset);
             self::$twig->addFunction($excerpt);
             self::$twig->addFunction($url);
             self::$twig->addFunction($title);
             self::$twig->addFunction($pad);
+            self::$twig->addFunction($urlencode);
 
             $model = new NotificationsModel();
             $id = isset($_SESSION['id']) ? $_SESSION['id'] : '';

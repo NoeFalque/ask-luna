@@ -1,7 +1,32 @@
-.form-signin {
-  margin-top: 80px;
+label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-family: $heading-font;
+    font-size: 0.95em;
 }
 
-.form-control-danger {
-  border-color: $brand-danger;
+.form-signin {
+    margin: 0 auto;
+    margin-top: 80px;
+    max-width: 340px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: $black;
+    background-color: $white;
+    border: 1px solid rgba(0,0,0,.15);
+    transition: all 0.5s ease;
+
+    &:focus {
+        border-color: $main-color;
+    }
 }

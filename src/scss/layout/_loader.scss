@@ -1,0 +1,55 @@
+.loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: $gradient;
+    transform: translateX(-100%);
+    will-change: transform;
+    transition-property: transform;
+    transition-timing-function: $easing;
+    transition-duration: 0.4s;
+}
+
+.loader-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+    background: $white;
+    transform: translateX(-100%);
+    will-change: transform;
+    transition-property: transform;
+    transition-timing-function: $easing;
+    transition-duration: 0.4s;
+}
+
+.loader-expanded {
+    transform: translateX(0%);
+    transition-duration: 0.3s;
+    transition-delay: 0.2s;
+
+    & + .loader-background {
+        transform: translateX(0%);
+        transition-duration: 0.4s;
+    }
+}
+
+.loader-shrinked {
+    transform: translateX(-100%);
+    transition-duration: 0.4s;
+
+    & + .loader-background {
+        transform: translateX(-100%);
+        transition-duration: 0.4s;
+        transition-delay: 0.2s;
+    }
+}
