@@ -10,36 +10,60 @@
                     <div class="profile-presentation">
                         <div class="profile-picture" style="background-image: url({{ url('uploads/' ~ user.picture) }})">
                         </div>
-                        <h1>{{ user.username }}</h1>
+                        <h1 class="profile-title">@{{ user.username }}</h1>
                         <p class="profile-description">{{ user.description }}</p>
                     </div>
                     <div class="profile-stats">
                         <ul class="stats">
-                            <li><span class="number">3</span> questions</li>
-                            <li><span class="number">13</span> answers</li>
-                            <li><span class="number">35</span> likes</li>
+                            <li><span class="number">{{ stats.questions }}</span> questions</li>
+                            <li><span class="number">{{ stats.answers }}</span> answers</li>
+                            <li><span class="number">{{ stats.likes }}</span> likes</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-md-8">
-
                     <div class="profile-content">
                         <h2>Rewards</h2>
+
                         <div class="profile-rewards">
-                            <ul class="rewards">
-                                <li><img src="" alt="&#129351;"></li>
-                                <li><img src="" alt="&#129351;"></li>
-                                <li><img src="" alt="&#129351;"></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
+                            <div class="rewards">
+                                <div class="reward {{ user.has_one == 1 ? 'active' : ''  }}">
+                                    <img src="{{ asset('img/badges/curious_astronaut.png') }}" alt="Curious astronaut" class="reward-picture">
+                                    <h4 class="reward-title">Curious astronaut</h4>
+                                    <p class="reward-description">Ask 10 questions</p>
+                                </div>
+
+                                <div class="reward {{ user.has_two == 1 ? 'active' : ''  }}">
+                                    <img src="{{ asset('img/badges/certified_astronaut.png') }}" alt="Curious astronaut" class="reward-picture">
+                                    <h4 class="reward-title">Certified astronaut</h4>
+                                    <p class="reward-description">Ask 20 questions</p>
+                                </div>
+
+                                <div class="reward {{ user.has_three == 1 ? 'active' : ''  }}">
+                                    <img src="{{ asset('img/badges/little_camper.png') }}" alt="Curious astronaut" class="reward-picture">
+                                    <h4 class="reward-title">Little camper</h4>
+                                    <p class="reward-description">Answer 10 questions</p>
+                                </div>
+
+                                <div class="reward {{ user.has_four == 1 ? 'active' : ''  }}">
+                                    <img src="{{ asset('img/badges/globetrotter.png') }}" alt="Curious astronaut" class="reward-picture">
+                                    <h4 class="reward-title">Globetrotter</h4>
+                                    <p class="reward-description">Answer 20 questions</p>
+                                </div>
+
+                                <div class="reward {{ user.has_five == 1 ? 'active' : ''  }}">
+                                    <img src="{{ asset('img/badges/rocket_on_launch.png') }}" alt="Curious astronaut" class="reward-picture">
+                                    <h4 class="reward-title">Rocket on launch</h4>
+                                    <p class="reward-description">Get 10 upvotes</p>
+                                </div>
+
+                                <div class="reward {{ user.has_six == 1 ? 'active' : ''  }}">
+                                    <img src="{{ asset('img/badges/highlighted_comet.png') }}" alt="Curious astronaut" class="reward-picture">
+                                    <h4 class="reward-title">Highlighted comet</h4>
+                                    <p class="reward-description">Get 20 upvotes</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

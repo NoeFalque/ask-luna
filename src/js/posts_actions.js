@@ -1,6 +1,5 @@
 let upvote_buttons        = document.querySelectorAll('.comment-upvote')
 let downvote_buttons      = document.querySelectorAll('.comment-downvote')
-let misunderstand_buttons = document.querySelectorAll('.comment-misunderstand')
 let comment_buttons       = document.querySelectorAll('.comment-comment')
 
 upvote_buttons.forEach((button) => {

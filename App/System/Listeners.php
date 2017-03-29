@@ -33,6 +33,43 @@ App::getEmitter()->addListener('Comments.upvote', function() {
         'date'    => date('Y-m-d H:i:s'),
         'url'     => Settings::getConfig()['url'] . "picture-of-the-day/$post_id#$comment_id"
     ]);
+
+
+    $user = $model3->find($_SESSION['id']);
+
+    if($user->has_five == 0) {
+        $count = $model->likesCount($_SESSION['id']);
+
+        if($count >= 10) {
+            $model3->update($_SESSION['id'], [
+                'has_five' => 1
+            ]);
+
+            $model2->create([
+                'user_id' => $_SESSION['id'],
+                'message' => "You received a new badge!",
+                'date'    => date('Y-m-d H:i:s'),
+                'url'     => Settings::getConfig()['url'] . $user->username
+            ]);
+        }
+    }
+
+    if($user->has_six == 0) {
+        $count = $model->likesCount($_SESSION['id']);
+
+        if($count >= 20) {
+            $model3->update($_SESSION['id'], [
+                'has_six' => 1
+            ]);
+
+            $model2->create([
+                'user_id' => $_SESSION['id'],
+                'message' => "You received a new badge!",
+                'date'    => date('Y-m-d H:i:s'),
+                'url'     => Settings::getConfig()['url'] . $user->username
+            ]);
+        }
+    }
 });
 
 App::getEmitter()->addListener('Comments.add', function() {
@@ -55,6 +92,77 @@ App::getEmitter()->addListener('Comments.add', function() {
         'date'    => date('Y-m-d H:i:s'),
         'url'     => Settings::getConfig()['url'] . "picture-of-the-day/$post_id#$comment_id_reply"
     ]);
+
+
+    $user = $model3->find($_SESSION['id']);
+
+    if($user->has_one == 0) {
+        $count = $model->questionsCount($_SESSION['id']);
+
+        if($count >= 10) {
+            $model3->update($_SESSION['id'], [
+                'has_one' => 1
+            ]);
+
+            $model2->create([
+                'user_id' => $_SESSION['id'],
+                'message' => "You received a new badge!",
+                'date'    => date('Y-m-d H:i:s'),
+                'url'     => Settings::getConfig()['url'] . $user->username
+            ]);
+        }
+    }
+
+    if($user->has_two == 0) {
+        $count = $model->questionsCount($_SESSION['id']);
+
+        if($count >= 20) {
+            $model3->update($_SESSION['id'], [
+                'has_two' => 1
+            ]);
+
+            $model2->create([
+                'user_id' => $_SESSION['id'],
+                'message' => "You received a new badge!",
+                'date'    => date('Y-m-d H:i:s'),
+                'url'     => Settings::getConfig()['url'] . $user->username
+            ]);
+        }
+    }
+
+    if($user->has_three == 0) {
+        $count = $model->answersCount($_SESSION['id']);
+
+        if($count >= 10) {
+            $model3->update($_SESSION['id'], [
+                'has_three' => 1
+            ]);
+
+            $model2->create([
+                'user_id' => $_SESSION['id'],
+                'message' => "You received a new badge!",
+                'date'    => date('Y-m-d H:i:s'),
+                'url'     => Settings::getConfig()['url'] . $user->username
+            ]);
+        }
+    }
+
+    if($user->has_four == 0) {
+        $count = $model->answersCount($_SESSION['id']);
+
+        if($count >= 20) {
+            $model3->update($_SESSION['id'], [
+                'has_four' => 1
+            ]);
+
+            $model2->create([
+                'user_id' => $_SESSION['id'],
+                'message' => "You received a new badge!",
+                'date'    => date('Y-m-d H:i:s'),
+                'url'     => Settings::getConfig()['url'] . $user->username
+            ]);
+        }
+    }
 });
 
 App::getEmitter()->addListener('Comments.misunderstand', function() {

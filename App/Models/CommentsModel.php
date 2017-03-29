@@ -24,6 +24,29 @@ class CommentsModel extends Model {
                              LIMIT 12", []);
     }
 
+    public function questionsCount($id) {
+        $query = $this->query("SELECT id FROM {$this->table} WHERE user_id = ? AND parent_id = 0", [$id]);
+
+        return count($query);
+    }
+
+    public function answersCount($id) {
+        $query = $this->query("SELECT id FROM {$this->table} WHERE user_id = ? AND parent_id != 0", [$id]);
+
+        return count($query);
+    }
+
+    public function likesCount($id) {
+        $query = $this->query("SELECT score FROM {$this->table} WHERE user_id = ?", [$id]);
+        $count = 0;
+
+        foreach ($query as $result) {
+            $count+= $result->score;
+        }
+
+        return $count;
+    }
+
     public function upvote($id) {
         $score = $this->find($id)->score;
         $score++;

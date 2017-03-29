@@ -22,7 +22,17 @@ if (toggle_notifications) {
             if (this.readyState == 4 && this.status == 200) {
                 var res = this.responseText;
 
-                if (res != 'ok') {
+                if (res == 'ok') {
+                    var links = document.querySelectorAll('.dropdown-notifications a.dropdown-item');
+
+                    links.forEach(function (link) {
+                        link.parentNode.removeChild(link);
+                    });
+
+                    document.querySelector('.dropdown-notifications').innerHTML = '\n                        <div class="dropdown-item">\n                            No new notifications\n                        </div>\n                    ';
+
+                    document.querySelector('.notifications-count').innerHTML = '';
+                } else {
                     alert('A problem occured, please try again.');
                 }
             }

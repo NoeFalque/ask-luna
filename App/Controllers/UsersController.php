@@ -5,6 +5,7 @@ use \App\System\App;
 use \App\System\Settings;
 use \App\System\FormValidator;
 use \App\Models\UsersModel;
+use \App\Models\CommentsModel;
 use \App\System\Mailer;
 use \App\System\ImageUpload;
 
@@ -48,10 +49,17 @@ class UsersController extends Controller {
         $model = new UsersModel();
         $user  = $model->single($username);
 
+        $stats = new \stdClass;
+        $model2 = new CommentsModel();
+        $stats->questions = $model2->questionsCount($user->id);
+        $stats->answers   = $model2->answersCount($user->id);
+        $stats->likes     = $model2->likesCount($user->id);
+
         $this->render('pages/profile.twig', [
             'title'       => 'Profile',
             'description' => '',
-            'user'       => $user
+            'user'        => $user,
+            'stats'       => $stats
         ]);
     }
 

@@ -20,7 +20,23 @@ if(toggle_notifications) {
             if (this.readyState == 4 && this.status == 200) {
                 let res = this.responseText
 
-                if(res != 'ok') {
+                if(res == 'ok') {
+                    let links = document.querySelectorAll('.dropdown-notifications a.dropdown-item')
+
+                    links.forEach((link) => {
+                        link.parentNode.removeChild(link)
+                    })
+
+                    document.querySelector('.dropdown-notifications').innerHTML = `
+                        <div class="dropdown-item">
+                            No new notifications
+                        </div>
+                    `
+
+                    document.querySelector('.notifications-count').innerHTML = ''
+                }
+
+                else {
                     alert('A problem occured, please try again.')
                 }
             }

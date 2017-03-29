@@ -123,6 +123,8 @@
 
 .dropdown-notifications {
     min-width: 240px;
+    max-height: 330px;
+    overflow-y: scroll;
 }
 
 .notifications-count {

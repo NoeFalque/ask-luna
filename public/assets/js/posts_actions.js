@@ -2,7 +2,6 @@
 
 var upvote_buttons = document.querySelectorAll('.comment-upvote');
 var downvote_buttons = document.querySelectorAll('.comment-downvote');
-var misunderstand_buttons = document.querySelectorAll('.comment-misunderstand');
 var comment_buttons = document.querySelectorAll('.comment-comment');
 
 upvote_buttons.forEach(function (button) {

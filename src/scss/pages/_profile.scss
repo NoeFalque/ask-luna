@@ -15,8 +15,8 @@
     @extend .profile-card;
 
     .profile-picture {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         overflow: hidden;
         margin: auto;
@@ -26,13 +26,13 @@
 
     h1 {
         text-align: center;
-        font-size: 1.2em;
+        font-size: 1.3em;
     }
 
     .profile-description {
-        font-size: 0.9em;
+        font-size: 0.96em;
         line-height: 1.618;
-        color: $grey;
+        color: $black-2;
     }
 }
 
@@ -44,21 +44,22 @@
         margin: 0;
 
         li {
-            font-size: 0.8em;
+            font-size: 0.96em;
             list-style-type: none;
-            text-align: center;
             line-height: 2;
 
 
             .number {
                 color: $main-color;
                 font-weight: bold;
+                font-family: $heading-font;
             }
         }
     }
 }
 
 .profile-content {
+    margin-bottom: 40px;
 
     h2 {
         margin-top: 0;
@@ -69,25 +70,40 @@
     .profile-rewards {
         @extend .profile-card;
 
-        ul.rewards {
-            padding-left: 0;
-            margin: 0;
+        .rewards {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-            li {
-                display: inline-block;
-                vertical-align: top;
-                list-style-type: none;
-                height: 36px;
-                width: 36px;
-                border-radius: 50%;
-                background: $light-grey;
-                margin: 11px;
+        .reward {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            width: 33.33%;
 
-                img {
-                    width: 100%;
-                    height: 100%;
+            .reward-picture {
+                filter: grayscale(0.9);
+            }
+
+            &.active {
+                .reward-picture {
+                    filter: grayscale(0);
                 }
             }
+        }
+
+        .reward-picture {
+            width: 70px;
+            height: auto;
+        }
+
+        .reward-title {
+            margin: 14px 0px 2px 0px;
+        }
+
+        .reward-description {
+            margin: 0;
         }
     }
 
