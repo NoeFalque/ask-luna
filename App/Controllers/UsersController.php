@@ -44,6 +44,17 @@ class UsersController extends Controller {
         ]);
     }
 
+    public function single($username) {
+        $model = new UsersModel();
+        $user  = $model->single($username);
+
+        $this->render('pages/profile.twig', [
+            'title'       => 'Profile',
+            'description' => '',
+            'user'       => $user
+        ]);
+    }
+
     public function signup() {
         if(!empty($_POST)) {
             $username         = isset($_POST['username']) ? $_POST['username'] : '';

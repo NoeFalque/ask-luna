@@ -19,11 +19,15 @@ class UsersModel extends Model {
         return false;
     }
 
-    public static function logged(){
+    public static function logged() {
         if(!isset($_SESSION['auth'])) {
             App::redirect('signin');
             exit;
         }
+    }
+
+    public function single($username) {
+        return $this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true);
     }
 
 }

@@ -62,35 +62,37 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="single-content">
-            <div class="col-md-4">
-                <div class="single-navigation">
-                    <div class="single-navigation-picture" style="background-image: url('{{ url('uploads/' ~ post.url_hd) }}');">
+    {% if comments %}
+        <div class="container">
+            <div class="single-content">
+                <div class="col-md-4">
+                    <div class="single-navigation">
+                        <div class="single-navigation-picture" style="background-image: url('{{ url('uploads/' ~ post.url_hd) }}');">
 
-                    </div>
+                        </div>
 
-                    <div class="single-navigation-title">
-                        <h3>{{ post.title }}</h3>
-                    </div>
+                        <div class="single-navigation-title">
+                            <h3>{{ post.title }}</h3>
+                        </div>
 
-                    <div class="single-navigation-buttons">
-                        <a href="#" class="single-navigation-button">Previous</a>
-                        <a href="#" class="single-navigation-button">Next</a>
+                        <div class="single-navigation-buttons">
+                            <a href="#" class="single-navigation-button">Previous</a>
+                            <a href="#" class="single-navigation-button">Next</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-8">
-                <div class="single-interactions">
-                    {% for comment in comments %}
-                        {% set i = 0 %}
-                        {% include 'components/questions.twig' %}
-                    {% endfor %}
+                <div class="col-md-8">
+                    <div class="single-interactions">
+                        {% for comment in comments %}
+                            {% set i = 0 %}
+                            {% include 'components/questions.twig' %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 
 
     <div class="container">
