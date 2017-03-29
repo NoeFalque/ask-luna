@@ -41,6 +41,9 @@ class PostsController extends Controller {
         $model = new PostsModel();
         $post  = $model->find($id);
 
+        $previous = $model->previous($post->date);
+        $next     = $model->next($post->date);
+
         if(!$post) {
             App::error();
             exit;
@@ -124,6 +127,8 @@ class PostsController extends Controller {
                 'description' => '',
                 'page'        => 'post',
                 'post'        => $post,
+                'previous'    => $previous,
+                'next'        => $next,
                 'comments'    => $comments,
                 'medias'      => $medias,
                 'errors'      => isset($errors) ? $errors : []

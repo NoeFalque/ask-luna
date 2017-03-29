@@ -76,8 +76,13 @@
                         </div>
 
                         <div class="single-navigation-buttons">
-                            <a href="#" class="single-navigation-button">Previous</a>
-                            <a href="#" class="single-navigation-button">Next</a>
+                            {% if previous %}
+                                <a href="{{ url('picture-of-the-day/' ~ previous.id) }}" class="single-navigation-button">Previous</a>
+                            {% endif %}
+
+                            {% if next %}
+                                <a href="{{ url('picture-of-the-day/' ~ next.id) }}" class="single-navigation-button">Next</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

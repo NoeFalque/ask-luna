@@ -17,4 +17,30 @@ class PostsModel extends Model {
         return $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT $count", []);
     }
 
+    public function previous($date) {
+        $day      = date( 'Y-m-d', strtotime( $date . ' -1 day' ) );
+        $response = $this->query("SELECT id FROM {$this->table} WHERE date = ?", [$day], true);
+
+        if($response) {
+            return $response;
+        }
+
+        else {
+            return false;
+        }
+    }
+
+    public function next($date) {
+        $day      = date( 'Y-m-d', strtotime( $date . ' +1 day' ) );
+        $response = $this->query("SELECT id FROM {$this->table} WHERE date = ?", [$day], true);
+
+        if($response) {
+            return $response;
+        }
+
+        else {
+            return false;
+        }
+    }
+
 }
