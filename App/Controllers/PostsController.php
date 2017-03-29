@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use \App\System\App;
+use \App\System\Settings;
 use \App\System\ImageUpload;
 use \App\Models\PostsModel;
 use \App\Models\CommentsModel;
@@ -35,6 +36,19 @@ class PostsController extends Controller {
             'posts'       => $posts,
             'last_post'   => $last
         ]);
+    }
+
+    public function search($query) {
+        $model   = new PostsModel();
+        $results = $model->search($query);
+
+        $response = [
+            'message' => 'ok',
+            'url'     => Settings::getConfig()['url'],
+            'results' => $results
+        ];
+
+        echo json_encode($response);
     }
 
     public function single($id) {

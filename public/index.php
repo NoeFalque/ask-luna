@@ -107,6 +107,11 @@ $router->get('/api/notifications', function() {
     $controller->mark();
 });
 
+$router->get('/api/search/:query', function($query) {
+    $controller = new \App\Controllers\PostsController();
+    $controller->search($query);
+});
+
 $router->error(function() {
     App::error();
 });

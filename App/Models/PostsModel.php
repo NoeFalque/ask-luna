@@ -17,6 +17,11 @@ class PostsModel extends Model {
         return $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT $count", []);
     }
 
+    public function search($query) {
+        $q = "%$query%";
+        return $this->query("SELECT * FROM {$this->table} WHERE title LIKE ?", [$q]);
+    }
+
     public function previous($date) {
         $day      = date( 'Y-m-d', strtotime( $date . ' -1 day' ) );
         $response = $this->query("SELECT id FROM {$this->table} WHERE date = ?", [$day], true);

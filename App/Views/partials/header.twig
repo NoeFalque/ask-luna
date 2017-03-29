@@ -1,6 +1,20 @@
 <div class="loader loader-expanded"></div>
 <div class="loader-background"></div>
 
+<div class="search">
+    <a href="#" class="search-close">X</a>
+
+    <div class="search-content">
+        <div class="search-input">
+            <input type="search" name="search" placeholder="Just type here..." class="search-input-input">
+        </div>
+
+        <div class="search-results">
+
+        </div>
+    </div>
+</div>
+
 <header class="header header-global">
     <div class="header-logo">
         <a href="{{ url('') }}">
@@ -35,6 +49,10 @@
         <div>
             <nav class="nav">
                 <ul>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link header-search"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    </li>
+
                     {% if not auth %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('login') }}">Log in</a>

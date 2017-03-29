@@ -69,3 +69,66 @@ dates_from.forEach((date) => {
     let date_date  = date.innerHTML
     date.innerHTML = moment(date_date).fromNow()
 })
+
+let header_search = document.querySelector('.header-search')
+
+header_search.addEventListener('click', (e) => {
+    e.preventDefault()
+    let search = document.querySelector('.search')
+    search.classList.add('search-active')
+    let body   = document.querySelector('body')
+    body.classList.add('body-blocked')
+})
+
+let search_close = document.querySelector('.search-close')
+
+search_close.addEventListener('click', (e) => {
+    e.preventDefault()
+    let search = document.querySelector('.search')
+    search.classList.remove('search-active')
+    let body   = document.querySelector('body')
+    body.classList.remove('body-blocked')
+})
+
+let search_input = document.querySelector('.search-input-input')
+
+search_input.addEventListener('keyup', () => {
+    let query = search_input.value
+    let $results = document.querySelector('.search-results')
+
+    $results.innerHTML = ''
+
+    if(query != '') {
+        let xhttp = new XMLHttpRequest()
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let res = JSON.parse(this.responseText)
+
+                if(res.results.length == 0) {
+                    $results.innerHTML = `<p>Sorry but nothing match your request :(</p>`
+                }
+
+                else if(res.results.length > 0) {
+                    let $ul = document.createElement('ul')
+
+                    res.results.forEach((result) => {
+                        let $li = document.createElement('li')
+                        $li.classList.add('search-item')
+
+                        $li.innerHTML = `<a href="${res.url}picture-of-the-day/${result.id}" class="search-link">${result.title}</a>`
+
+                        $ul.appendChild($li)
+                    })
+
+                    $results.appendChild($ul)
+                }
+
+                else {
+                    $results.innerHTML = ''
+                }
+            }
+        }
+        xhttp.open('GET', `/api/search/${query}`, true)
+        xhttp.send()
+    }
+})
