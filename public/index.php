@@ -51,6 +51,12 @@ $router->post('/picture-of-the-day/:id', function($id) {
     $controller->single($id);
 });
 
+$router->get('/answer', function() {
+    App::secured();
+    $controller = new \App\Controllers\CommentsController();
+    $controller->answer();
+});
+
 $router->get('/:username', function($username) {
     $controller = new \App\Controllers\UsersController();
     $controller->single($username);

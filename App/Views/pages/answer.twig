@@ -1,0 +1,55 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="section">
+            <div class="section-title">
+                <h2><b>What people</b> are asking</h2>
+            </div>
+
+            <div class="section-grid">
+
+                {% for question in questions %}
+                <div class="section-grid-item section-grid-item-6">
+                    <a href="{{ url('picture-of-the-day/' ~ question.post__id ~ '#' ~ question.id) }}">
+                        <div class="card">
+                            <div class="card-image" style="background-image: url('{{ url('uploads/' ~ question.url) }}');">
+
+                            </div>
+
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <h3>{{ question.content }}</h3>
+                                </div>
+
+                                <div class="card-infos">
+                                    <div class="card-author">
+                                        {% if question.picture %}
+                                            <img src="{{ url('uploads/' ~ question.picture) }}" alt="{{ question.username }}" class="card-author-picture">
+                                        {% else %}
+                                            <img src="{{ asset('img/default.png') }}" alt="{{ question.username }}" class="card-author-picture">
+                                        {% endif %}
+
+                                        <div class="card-author-details">
+                                            <span class="card-author-name">{{ question.username }}</span>
+                                            <span class="card-date date-from">{{ question.date }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-reactions">
+                                        <div class="card-reaction">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

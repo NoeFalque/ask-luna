@@ -8,6 +8,18 @@ use \App\Models\VotesModel;
 
 class CommentsController extends Controller {
 
+    public function answer() {
+        $model     = new CommentsModel();
+        $questions = $model->answer();
+
+        $this->render('pages/answer.twig', [
+            'title'       => 'Answer questions',
+            'description' => '',
+            'page'        => 'answer',
+            'questions'   => $questions
+        ]);
+    }
+
     public function upvote($id) {
         $model  = new VotesModel();
         $model2 = new CommentsModel();
