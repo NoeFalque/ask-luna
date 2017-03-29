@@ -24,6 +24,17 @@ class CommentsModel extends Model {
                              LIMIT 12", []);
     }
 
+    public function popularQuestions() {
+        return $this->query("SELECT comments.id, comments.post_id, comments.content, comments.parent_id, comments.score, comments.misunderstand, comments.date, comments.user_id, users.id AS user__id, users.username, users.picture, posts.id AS post__id, posts.url FROM {$this->table}
+                             LEFT JOIN users
+                             ON comments.user_id = users.id
+                             LEFT JOIN posts
+                             ON comments.post_id = posts.id
+                             WHERE comments.parent_id = 0
+                             ORDER BY comments.score DESC
+                             LIMIT 2", []);
+    }
+
     public function questionsCount($id) {
         $query = $this->query("SELECT id FROM {$this->table} WHERE user_id = ? AND parent_id = 0", [$id]);
 

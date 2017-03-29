@@ -40,32 +40,36 @@
             </div>
 
             <div class="section-grid">
+                {% for question in questions %}
                 <div class="section-grid-item section-grid-item-6">
-                    <a href="#">
+                    <a href="{{ url('picture-of-the-day/' ~ question.post__id ~ '#' ~ question.id) }}">
                         <div class="card">
-                            <div class="card-image" style="background-image: url('{{ url('uploads/' ~ last_post.url_hd) }}');">
+                            <div class="card-image" style="background-image: url('{{ url('uploads/' ~ question.url) }}');">
 
                             </div>
 
                             <div class="card-content">
                                 <div class="card-title">
-                                    <h3>The Basics Of Buying A Telescope dezldjzef fzefij fezfojerpfjer ferfjeprfjer?</h3>
+                                    <h3>{{ question.content }}</h3>
                                 </div>
 
                                 <div class="card-infos">
                                     <div class="card-author">
-                                        <img src="{{ asset('img/default.png') }}" alt="" class="card-author-picture">
+                                        {% if question.picture %}
+                                            <img src="{{ url('uploads/' ~ question.picture) }}" alt="{{ question.username }}" class="card-author-picture">
+                                        {% else %}
+                                            <img src="{{ asset('img/default.png') }}" alt="{{ question.username }}" class="card-author-picture">
+                                        {% endif %}
 
                                         <div class="card-author-details">
-                                            <span class="card-author-name">Lester Stephens</span>
-                                            <span class="card-date">4 hours ago</span>
+                                            <span class="card-author-name">{{ question.username }}</span>
+                                            <span class="card-date date-from">{{ question.date }}</span>
                                         </div>
                                     </div>
 
                                     <div class="card-reactions">
                                         <div class="card-reaction">
-                                            <span>28 likes</span>
-                                            <span>42 answers</span>
+                                            {{ question.score }} love
                                         </div>
                                     </div>
                                 </div>
@@ -73,56 +77,95 @@
                         </div>
                     </a>
                 </div>
-
-                <div class="section-grid-item section-grid-item-6">
-                    <div class="card">
-                        <div class="card-image" style="background-image: url('{{ url('uploads/' ~ last_post.url_hd) }}');">
-
-                        </div>
-
-                        <div class="card-content">
-                            <div class="card-title">
-                                <h3>The Basics Of Buying A Telescope ?</h3>
-                            </div>
-
-                            <div class="card-infos">
-                                <div class="card-author">
-                                    <img src="{{ asset('img/default.png') }}" alt="" class="card-author-picture">
-
-                                    <div class="card-author-details">
-                                        <span class="card-author-name">Lester Stephens</span>
-                                        <span class="card-date">4 hours ago</span>
-                                    </div>
-                                </div>
-
-                                <div class="card-reactions">
-                                    <div class="card-reaction">
-                                        <span>28 likes</span>
-                                        <span>42 answers</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 
     <div class="container">
-        <h2>Latest pictures of the day</h2>
+        <div class="section">
+            <div class="section-title">
+                <h2><b>Popular</b> pictures</h2>
+            </div>
 
-        <div class="row">
-            {% for post in posts %}
-                {% if post == posts[0] %}
-                {% else %}
-                    <div class="col-md-4">
-                        <h3>{{ post.title }}</h3>
-                        <a class="btn btn-secondary" href="{{ url('picture-of-the-day/' ~ post.id) }}" role="button">View details »</a>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div><!--/row-->
+            <div class="section-grid">
+                {% for post in popular_posts %}
+                <div class="section-grid-item section-grid-item-4">
+                    <a href="{{ url('picture-of-the-day/' ~ post.id) }}">
+                        <div class="card">
+                            <div class="card-image" style="background-image: url('{{ url('uploads/' ~ post.url) }}');">
+
+                            </div>
+
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <h3>{{ post.title }}</h3>
+                                </div>
+
+                                <div class="card-infos">
+                                    <div class="card-author">
+                                        <div class="card-author-details">
+                                            <span class="card-date date-from">{{ post.date }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-reactions">
+                                        <div class="card-reaction">
+                                            {{ post.questions }} questions
+                                            {{ post.answers }} answers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-title">
+                <h2><b>Popular</b> pictures</h2>
+            </div>
+
+            <div class="section-grid">
+                {% for post in latest_posts %}
+                <div class="section-grid-item section-grid-item-4">
+                    <a href="{{ url('picture-of-the-day/' ~ post.id) }}">
+                        <div class="card">
+                            <div class="card-image" style="background-image: url('{{ url('uploads/' ~ post.url) }}');">
+
+                            </div>
+
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <h3>{{ post.title }}</h3>
+                                </div>
+
+                                <div class="card-infos">
+                                    <div class="card-author">
+                                        <div class="card-author-details">
+                                            <span class="card-date date-from">{{ post.date }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-reactions">
+                                        <div class="card-reaction">
+                                            {{ post.questions }} questions
+                                            {{ post.answers }} answers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

@@ -31,7 +31,7 @@ if (toggle_notifications) {
 
                     document.querySelector('.dropdown-notifications').innerHTML = '\n                        <div class="dropdown-item">\n                            No new notifications\n                        </div>\n                    ';
 
-                    document.querySelector('.notifications-count').innerHTML = '';
+                    if (document.querySelector('.notifications-count')) document.querySelector('.notifications-count').innerHTML = '';
                 } else {
                     alert('A problem occured, please try again.');
                 }

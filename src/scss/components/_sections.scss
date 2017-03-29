@@ -1,5 +1,5 @@
 .section {
-    padding: 60px 0px;
+    padding: 60px 0px 20px 0px;
 }
 
 .section-title {
@@ -32,8 +32,12 @@
     width: 50%;
 }
 
+.section-grid-item-4 {
+    width: 33.33%;
+}
+
 @media screen and (max-width: $tablet) {
-    .section-grid-item-6 {
+    .section-grid-item-6, .section-grid-item-4 {
         width: 100%;
     }
 }

@@ -33,7 +33,8 @@ if(toggle_notifications) {
                         </div>
                     `
 
-                    document.querySelector('.notifications-count').innerHTML = ''
+                    if(document.querySelector('.notifications-count'))
+                        document.querySelector('.notifications-count').innerHTML = ''
                 }
 
                 else {

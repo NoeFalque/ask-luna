@@ -25,16 +25,23 @@ class PostsController extends Controller {
     }
 
     public function all() {
-        $model = new PostsModel();
-        $posts  = $model->latest(10);
-        $last   = $model->last();
+        $model         = new PostsModel();
+        $latest_posts  = $model->latest();
+        $last          = $model->last();
+
+        $model2        = new CommentsModel();
+        $questions     = $model2->popularQuestions();
+
+        $popular_posts = $model->popular();
 
         $this->render('pages/index.twig', [
-            'title'       => 'Welcome!',
-            'description' => '',
-            'page'        => 'index',
-            'posts'       => $posts,
-            'last_post'   => $last
+            'title'         => 'Welcome!',
+            'description'   => '',
+            'page'          => 'index',
+            'last_post'     => $last,
+            'questions'     => $questions,
+            'popular_posts' => $popular_posts,
+            'latest_posts'  => $latest_posts
         ]);
     }
 
