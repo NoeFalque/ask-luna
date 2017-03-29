@@ -1,7 +1,66 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
-    {{ user.username }}
 
-    <img src="{{ url('uploads/' ~ user.picture) }}" alt="">
+
+    <div class="content">
+        <div class="container">
+            <div class="profile">
+                <div class="col-md-4">
+                    <div class="profile-presentation">
+                        <div class="profile-picture" style="background-image: url({{ url('uploads/' ~ user.picture) }})">
+                        </div>
+                        <h1>{{ user.username }}</h1>
+                        <p class="profile-description">Descriptio ici Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    </div>
+                    <div class="profile-stats">
+                        <ul class="stats">
+                            <li><span class="number">3</span> questions</li>
+                            <li><span class="number">13</span> answers</li>
+                            <li><span class="number">35</span> likes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+
+                    <div class="profile-content">
+                        <h2>Rewards</h2>
+                        <div class="profile-rewards">
+                            <ul class="rewards">
+                                <li><img src="" alt="&#129351;"></li>
+                                <li><img src="" alt="&#129351;"></li>
+                                <li><img src="" alt="&#129351;"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="profile-content">
+                        <h2>Questions</h2>
+                        <div class="profile-questions">
+
+                        </div>
+                    </div>
+
+                    <div class="profile-content">
+                        <h2>Answers</h2>
+                        <div class="profile-answers">
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
