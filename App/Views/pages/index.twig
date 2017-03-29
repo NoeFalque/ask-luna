@@ -16,7 +16,11 @@
                 <li class="fact"><span class="fact-important">343</span> answers</li>
             </ul>
             <div class="jumbotron-actions">
-                <a class="btn btn-white" href="{{ url('picture-of-the-day/' ~ last_post.id) }}" role="button">Explore this case</a>
+                <ul>
+                    <li>
+                        <a href="{{ url('picture-of-the-day/' ~ last_post.id) }}" role="button">Explore this case</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

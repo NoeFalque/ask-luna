@@ -126,17 +126,20 @@ class UsersController extends Controller {
         if(!empty($_POST)) {
             $username         = isset($_POST['username']) ? $_POST['username'] : '';
             $email            = isset($_POST['email']) ? $_POST['email'] : '';
+            $description      = isset($_POST['description']) ? $_POST['description'] : '';
 
             $validator = new FormValidator();
             $validator->validUsername('username', $username, "Your username is not valid (no spaces, uppercase, special character)");
             $validator->availableUsername('username', $username, "Your username is not available");
             $validator->validEmail('email', $email, "Your email is not valid");
+            $validator->validDescription('description', $description, "Your description must be under 160 characters");
 
             if($validator->isValid()) {
                 $model = new UsersModel();
                 $model->update($_SESSION['id'], [
-                    'username'   => $username,
-                    'email'      => $email
+                    'username'    => $username,
+                    'email'       => $email,
+                    'description' => $description
                 ]);
 
                 $_SESSION['auth']  = $username;

@@ -41,14 +41,22 @@ class FormValidator {
         }
     }
 
-    public function availableUsername($element, $value, $message) {
-        $model  = new UsersModel();
-        $result = $model->query("SELECT * FROM users WHERE username = ?", [
-            $value
-        ], true);
-
-        if($result) {
+    public function validDescription($element, $value, $message) {
+        if(strlen($value) > 160) {
             $this->errors[$element] = $message;
+        }
+    }
+
+    public function availableUsername($element, $value, $message) {
+        if($_SESSION['auth'] != $value) {
+            $model  = new UsersModel();
+            $result = $model->query("SELECT * FROM users WHERE username = ?", [
+                $value
+            ], true);
+
+            if($result) {
+                $this->errors[$element] = $message;
+            }
         }
     }
 
