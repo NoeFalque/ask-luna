@@ -1,4 +1,4 @@
-environment: 'noe'
+environment: 'dev'
 
 dev:
     name: 'Intensive space'
