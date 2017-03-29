@@ -1,4 +1,6 @@
 App/config.yml
+public/assets/css/app.min.css
+public/assets/js/app.min.js
 
 # Created by https://www.gitignore.io/api/node,macos
 

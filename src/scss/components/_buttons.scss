@@ -32,3 +32,15 @@
         background: $main-color-hover;
     }
 }
+
+.btn-white {
+    display: inline-block;
+    border: 2px solid $white;
+    border-radius: $border-radius;
+    padding: 7px 16px;
+    color: $white;
+
+    &:hover {
+        color: $white;
+    }
+}
