@@ -7,15 +7,17 @@
 
         </div>
 
-        <div class="container jumbotron-content">
-            <span class="subtitle">Astronomic picture of the day</span>
+        <div class="jumbotron-content">
+            <span class="subtitle">Astronomy picture of the day</span>
             <h1 class="title">{{ last_post.title }}</h1>
             <ul class="facts">
-                <li class="fact"><span class="fact-important">130</span> loves</li>
-                <li class="fact"><span class="fact-important">220</span> question</li>
+                <li class="fact"><span class="fact-important">130</span> likes</li>
+                <li class="fact"><span class="fact-important">220</span> questions</li>
                 <li class="fact"><span class="fact-important">343</span> answers</li>
             </ul>
-            <p><a class="btn btn-primary btn-lg" href="{{ url('picture-of-the-day/' ~ last_post.id) }}" role="button">Explore this case</a></p>
+            <div class="jumbotron-actions">
+                <a class="btn btn-white" href="{{ url('picture-of-the-day/' ~ last_post.id) }}" role="button">Explore this case</a>
+            </div>
         </div>
     </div>
 
