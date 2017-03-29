@@ -66,6 +66,21 @@
 
     ul {
         padding: 0;
+
+        li {
+            transform: translateX(30px);
+            opacity: 0;
+        }
+
+        @for $i from 1 to 100 {
+            li:nth-child(#{$i}) {
+                animation-name: translate;
+                animation-duration: 0.3s;
+                animation-timing-function: $easing;
+                animation-fill-mode: forwards;
+                animation-delay: #{($i * 0.1) + 0.15}s;
+            }
+        }
     }
 
     p {
@@ -82,4 +97,16 @@
 .search-link {
     color: $white;
     font-size: 2.6em;
+}
+
+@keyframes translate {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
 }
