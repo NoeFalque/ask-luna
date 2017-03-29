@@ -2,7 +2,7 @@
 <div class="loader-background"></div>
 
 <div class="search">
-    <a href="#" class="search-close">X</a>
+    <a href="#" class="search-close"><i class="fa fa-times" aria-hidden="true"></i></a>
 
     <div class="search-content">
         <div class="search-input">
@@ -18,7 +18,7 @@
 <header class="header header-home">
     <div class="header-logo">
         <a href="{{ url('') }}">
-            Website name
+            <img src="{{ asset('img/logo.png') }}" alt="Logo">
         </a>
     </div>
 
@@ -63,11 +63,16 @@
                         </li>
                     {% else %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#">
-                                Notifs({{notifications|length}})
+                            <a class="nav-link dropdown-toggle notifications-link" href="#">
+                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                {% if notifications|length > 0 %}
+                                    <span class="notifications-count">
+                                        {{ notifications|length }}
+                                    </span>
+                                {% endif %}
                             </a>
 
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu dropdown-notifications">
                                 {% if notifications %}
                                     {% for notification in notifications %}
                                         {% if loop.index0 < 3 %}

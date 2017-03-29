@@ -36,9 +36,15 @@
         top: 20px;
         right: 20px;
         color: $white;
+        transition: all 0.3s $easing;
+
+        i {
+            font-size: 1.14em;
+        }
 
         &:hover {
             cursor: pointer;
+            color: $main-color;
         }
     }
 }

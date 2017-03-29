@@ -30,6 +30,11 @@
 
 .header-logo {
     padding-right: 20px;
+
+    img {
+        width: 58px;
+        height: auto;
+    }
 }
 
 .header-toggle {
@@ -95,12 +100,43 @@
 }
 
 .dropdown-menu {
-    display: none;
+    pointer-events: none;
+    transform: translateX(30px);
     padding-top: 10px;
+    opacity: 0;
+    transition: all 0.3s $easing;
 }
 
 .dropdown-toggle-active + .dropdown-menu {
-    display: block;
+    pointer-events: all;
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.notifications-link {
+    position: relative;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.dropdown-notifications {
+    min-width: 240px;
+}
+
+.notifications-count {
+    position: absolute;
+    top: -4px;
+    left: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.4em;
 }
 
 @media screen and (min-width: $tablet) {
@@ -137,7 +173,7 @@
             display: flex;
             align-items: center;
 
-            &:last-child {
+            .nav-item:last-child {
                 margin-right: 0px;
             }
         }
@@ -145,11 +181,15 @@
 
     .nav-item {
         display: inline-block;
-        margin-right: 10px;
+        margin-right: 14px;
     }
 
     .nav-link {
         font-size: 1.04em;
+
+        i {
+            font-size: 1.14em;
+        }
     }
 
     .dropdown {

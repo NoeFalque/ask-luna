@@ -95,6 +95,12 @@
                 border-radius: $border-radius;
                 padding: 7px 16px;
                 color: $white;
+                transition: all 0.3s $easing;
+
+                &:hover {
+                    color: $main-color;
+                    border-color: $main-color;
+                }
             }
         }
 
