@@ -333,3 +333,22 @@
     height: 44px;
     border-radius: 50%;
 }
+
+.comment-reply-open {
+    .comment-comment {
+        color: $main-color;
+    }
+}
+
+.comment-comment {
+    padding-right: 10px;
+    color: $black-2;
+
+    &:hover {
+        color: $main-color;
+    }
+
+    i {
+        font-size: 1.1em;
+    }
+}

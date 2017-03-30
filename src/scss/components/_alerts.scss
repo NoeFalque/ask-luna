@@ -4,16 +4,32 @@
     bottom: 50px;
     background: $white;
     box-shadow: $box-shadow-2;
-    padding: 14px 60px 14px 16px;
+    padding: 40px 60px 40px 30px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: row;
     border-radius: $border-radius-2;
+    transform: translateX(calc(100% + 50px));
+    animation: alert 0.4s $easing 0.5s forwards;
+}
+
+@keyframes alert {
+    from {
+        transform: translateX(calc(100% + 50px));
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }
 
 .alert-danger {
     color: $danger-color;
+}
+
+.alert-success {
+    color: $success-color;
 }
 
 .fade {

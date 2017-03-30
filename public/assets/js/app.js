@@ -141,9 +141,14 @@ search_input.addEventListener('keyup', function () {
 // parallax bg on scroll
 
 var $bg = document.querySelector('.jumbotron');
-$bg.style.backgroundSize = "100% auto";
-$bg.style.backgroundPosition = "center 0px";
 
-window.addEventListener('scroll', function () {
-    $bg.style.backgroundPosition = "center " + window.scrollY * 0.5 + "px";
-});
+if ($bg) {
+    $bg.style.backgroundSize = "100% auto";
+    $bg.style.backgroundPosition = "center 0px";
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY < window.innerHeight) {
+            $bg.style.backgroundPosition = 'center ' + window.scrollY * 0.5 + 'px';
+        }
+    });
+}

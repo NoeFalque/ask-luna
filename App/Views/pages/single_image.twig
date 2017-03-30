@@ -102,21 +102,6 @@
         </div>
     {% endif %}
 
-
-    <div class="container">
-        <h2>Medias</h2>
-
-        <div class="row">
-            {% if medias %}
-                {% for media in medias %}
-                    <div class="col-md-3">
-                        <img src="{{ url('uploads/' ~ media.media) }}" alt="">
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
-    </div>
-
     {% if errors %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -128,19 +113,6 @@
             {% endfor %}
         </div>
     {% endif %}
-
-    <div class="container">
-        <form action="#" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="media">Add linked pictures</label>
-                <input type="file" name="media" id="media" required>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Send picture</button>
-            </div>
-        </form>
-    </div>
 
 {% endblock %}
 
