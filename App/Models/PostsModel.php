@@ -64,8 +64,12 @@ class PostsModel extends Model {
         return $results;
     }
 
-    public function latest() {
-        $latest = $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT 6", []);
+    public function latest($count = null) {
+        if($count) {
+            $latest = $this->query("SELECT * FROM {$this->table} ORDER BY date DESC LIMIT $count", []);
+        } else {
+            $latest = $this->query("SELECT * FROM {$this->table} ORDER BY date DESC", []);
+        }
 
         $results = [];
         foreach ($latest as $element) {
