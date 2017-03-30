@@ -11,3 +11,32 @@ zoom_close.addEventListener('click', (e) => {
     e.preventDefault()
     zoom.classList.remove('single-zoom-visible')
 })
+
+// Scroll to anchor:
+function smooth_scroll() {
+    let hash = location.hash
+    let comment_selector = hash.substr(1, hash.length)
+    let $comment = document.querySelector("[data-id ='" + comment_selector +"']")
+    if($comment){
+        let comment_posY = window.scrollY + $comment.getBoundingClientRect().top
+        let scroll = comment_posY
+        let scroll_anim = setInterval( function(){
+            window.scrollTo(0, comment_posY - scroll)
+            scroll -= scroll/100;
+            if(scroll< 80) {
+                clearInterval(scroll_anim)
+            }
+        }, 5)
+    }
+}
+smooth_scroll()
+
+// let notifs;
+// while(!notifs || notifs.length <= 0) {
+//     notifs = document.querySelectorAll(".dropdown-notifications .dropdown-item");
+// }
+// for(let i in notifs){
+//     notifs.addEventListener(notifs[i], "click", (e)=>{
+//         console.log(this.getAttribute("href"))
+//     });
+// }
