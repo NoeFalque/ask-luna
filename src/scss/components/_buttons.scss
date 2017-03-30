@@ -44,3 +44,46 @@
         color: $white;
     }
 }
+
+#explore-btn {
+
+    overflow: hidden;
+    position: relative;
+
+    i {
+        display: inline-block;
+        position: absolute;
+        top: 4px;
+        font-size: 28px;
+        transform: translateX(-50px) rotate(45deg) ;
+        transition: transform .2s ease .1s;
+    }
+
+    span {
+        display: inline-block;
+        transition: transform .3s;
+    }
+
+    &:hover {
+
+        border-color: $white;
+        color: $white;
+        i {
+            transform: translateX(50px) rotate(45deg);
+        }
+        span {
+            transform: translateX(200px);
+        }
+    }
+    &:focus {
+        i {
+            animation: rocket 1s ease forwards;
+        }
+    }
+
+}
+
+@keyframes rocket {
+    from   {transform: translateX(50px) rotate(45deg); }
+    to     {transform: translateX(200px) rotate(45deg); }
+}
