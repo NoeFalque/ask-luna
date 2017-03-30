@@ -108,6 +108,12 @@ class PostsController extends Controller {
                     'date'    => date('Y-m-d H:i:s'),
                     'user_id' => $_SESSION['id']
                 ]);
+
+
+                $comment_id = $model2->last($_SESSION['id'])[0]->id;
+
+                App::redirect("picture-of-the-day/$id#$comment_id");
+                exit;
             }
 
             else if(!empty($_POST['answer']) && !empty($_POST['parent_id'])) {
@@ -121,6 +127,11 @@ class PostsController extends Controller {
                 ]);
 
                 App::getEmitter()->emit('Comments.add');
+
+                $comment_id = $model2->last($_SESSION['id'])[0]->id;
+
+                App::redirect("picture-of-the-day/$id#$comment_id");
+                exit;
             }
         }
 

@@ -71,6 +71,10 @@ class CommentsModel extends Model {
         return $answers;
     }
 
+    public function last($id) {
+        return $this->query("SELECT id FROM {$this->table} WHERE user_id = ? ORDER BY date DESC LIMIT 1", [$id]);
+    }
+
     public function questionsCount($id) {
         $query = $this->query("SELECT id FROM {$this->table} WHERE user_id = ? AND parent_id = 0", [$id]);
 
