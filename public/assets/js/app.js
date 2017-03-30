@@ -137,3 +137,13 @@ search_input.addEventListener('keyup', function () {
         xhttp.send();
     }
 });
+
+// parallax bg on scroll
+
+var $bg = document.querySelector('.jumbotron');
+$bg.style.backgroundSize = "100% auto";
+$bg.style.backgroundPosition = "center 0px";
+
+window.addEventListener('scroll', function () {
+    $bg.style.backgroundPosition = "center " + window.scrollY * 0.5 + "px";
+});

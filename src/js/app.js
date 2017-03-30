@@ -149,3 +149,16 @@ search_input.addEventListener('keyup', () => {
         xhttp.send()
     }
 })
+
+
+
+
+// parallax bg on scroll
+
+let $bg = document.querySelector('.jumbotron')
+$bg.style.backgroundSize = "100% auto";
+$bg.style.backgroundPosition = "center 0px";
+
+window.addEventListener('scroll', () => {
+    $bg.style.backgroundPosition = "center " + window.scrollY * 0.5 +"px";
+})
