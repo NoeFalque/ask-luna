@@ -2,7 +2,12 @@
 
 {% block content %}
 
-    <h1>404 not found</h1>
-    <p>The page you're looking for doesn't exist or has been deleted.</p>
+    <div class="not-found" style="background-image: url('{{ asset('img/404.jpg') }}')">
+        <div class="not-found-content">
+            <h1>404 not found</h1>
+            <p>The page you're looking for doesn't exist or has been deleted.</p>
+            <a href="{{ url('') }}" title="Get back to Ask Luna">Get back to Ask Luna</a>
+        </div>
+    </div>
 
 {% endblock %}
