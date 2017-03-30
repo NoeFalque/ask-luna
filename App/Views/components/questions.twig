@@ -19,7 +19,12 @@
             {% if i < 2 %}
                 <a href="#" class="btn btn-secondary comment-comment" data-id="{{ comment.id }}"><i class="fa fa-reply" aria-hidden="true"></i></a>
             {% endif %}
-            <a href="#" class="btn btn-primary comment-upvote" data-id="{{ comment.id }}"><i class="fa fa-heart" aria-hidden="true"></i></a><strong class="comment-score">{{ comment.score }}</strong>
+
+            <a href="#" class="btn btn-primary comment-upvote {{ comment.upvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+            </a>
+
+            <strong class="comment-score">{{ comment.score }}</strong>
         </div>
     </div>
 </div>

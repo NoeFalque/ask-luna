@@ -18,9 +18,16 @@
         <div class="single-answer-actions">
             {% if i < 2 %}
                 <strong class="comment-score">{{ comment.score }}</strong>
+
                 <a href="#" class="btn btn-secondary comment-comment" data-id="{{ comment.id }}"><i class="fa fa-reply" aria-hidden="true"></i></a>
-                <a href="#" class="btn btn-primary comment-upvote" data-id="{{ comment.id }}"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
-                <a href="#" class="btn btn-danger comment-downvote" data-id="{{ comment.id }}"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+
+                <a href="#" class="btn btn-primary comment-upvote {{ comment.upvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                </a>
+
+                <a href="#" class="btn btn-danger comment-downvote {{ comment.downvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                </a>
             {% endif %}
         </div>
     </div>
