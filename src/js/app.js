@@ -132,7 +132,13 @@ search_input.addEventListener('keyup', () => {
                         let $li = document.createElement('li')
                         $li.classList.add('search-item')
 
-                        $li.innerHTML = `<a href="${res.url}picture-of-the-day/${result.id}" class="search-link">${result.title}</a>`
+                        $li.innerHTML = `
+                            <a href="${res.url}picture-of-the-day/${result.id}" class="search-link">
+                                <div class="search-picture" style="background-image: url('${res.url}uploads/${result.url}')"></div>
+                                <h3 class="search-title">${result.title}</h3>
+                                <p class="search-date">${moment(result.date).fromNow()}</p>
+                            </a>
+                        `
 
                         $ul.appendChild($li)
                     })

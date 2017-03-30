@@ -122,7 +122,7 @@ search_input.addEventListener('keyup', function () {
                         var $li = document.createElement('li');
                         $li.classList.add('search-item');
 
-                        $li.innerHTML = '<a href="' + res.url + 'picture-of-the-day/' + result.id + '" class="search-link">' + result.title + '</a>';
+                        $li.innerHTML = '\n                            <a href="' + res.url + 'picture-of-the-day/' + result.id + '" class="search-link">\n                                <div class="search-picture" style="background-image: url(\'' + res.url + 'uploads/' + result.url + '\')"></div>\n                                <h3 class="search-title">' + result.title + '</h3>\n                                <p class="search-date">' + moment(result.date).fromNow() + '</p>\n                            </a>\n                        ';
 
                         $ul.appendChild($li);
                     });

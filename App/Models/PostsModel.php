@@ -20,7 +20,7 @@ class PostsModel extends Model {
 
     public function search($query) {
         $q = "%$query%";
-        return $this->query("SELECT * FROM {$this->table} WHERE title LIKE ?", [$q]);
+        return $this->query("SELECT * FROM {$this->table} WHERE title LIKE ? OR description LIKE ? ORDER BY date DESC", [$q, $q]);
     }
 
     public function previous($date) {
