@@ -45,18 +45,26 @@
     }
 }
 
-#explore-btn {
+.animated-btn.animated-btn {
 
     overflow: hidden;
     position: relative;
+    width: 180px;
+    text-align: center;
 
     i {
         display: inline-block;
         position: absolute;
-        top: 4px;
-        font-size: 28px;
-        transform: translateX(-50px) rotate(45deg) ;
-        transition: transform .2s ease .1s;
+        font-size: 18px;
+        top: 10px;
+        transform: translateY(30px) translateX(30px);
+        transition: transform .3s;
+
+        &.fa-rocket {
+            top: 5px;
+            font-size: 26px;
+            transform: translateX(-60px) rotate(45deg) ;
+        }
     }
 
     span {
@@ -69,15 +77,26 @@
         border-color: $white;
         color: $white;
         i {
-            transform: translateX(50px) rotate(45deg);
+            transform: translateY(0px) translateX(30px);
+
+            &.fa-rocket {
+                transform: translateX(50px) rotate(45deg);
+            }
         }
         span {
+            transform: translateY(-30px);
+        }
+
+        .fa-rocket + span {
             transform: translateX(200px);
         }
     }
     &:focus {
-        i {
+        i.fa-rocket {
             animation: rocket 1s ease forwards;
+        }
+        i.fa-rocket + span {
+            transform: translateX(200px);
         }
     }
 
