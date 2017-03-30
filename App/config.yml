@@ -1,4 +1,4 @@
-environment: 'dev'
+environment: 'noe'
 
 dev:
     name: 'Intensive space'
@@ -55,7 +55,7 @@ prod:
 noe:
     name: 'Intensive space'
     description: ''
-    url: 'http://localhost/H2/Dev/22-intensive-space/intensive-space/public/'
+    url: 'http://localhost/'
     database:
         username: 'root'
         password: 'root'

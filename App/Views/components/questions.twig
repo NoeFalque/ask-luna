@@ -20,8 +20,8 @@
                 <a href="#" class="btn btn-secondary comment-comment" data-id="{{ comment.id }}"><i class="fa fa-reply" aria-hidden="true"></i></a>
             {% endif %}
 
-            <a href="#" class="btn btn-primary comment-upvote {{ comment.upvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
-                <i class="fa fa-heart" aria-hidden="true"></i>
+            <a href="#" class="comment-upvote {{ comment.upvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
+                <svg class="heart"></svg>
             </a>
 
             <strong class="comment-score">{{ comment.score }}</strong>

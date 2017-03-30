@@ -21,12 +21,12 @@
 
                 <a href="#" class="btn btn-secondary comment-comment" data-id="{{ comment.id }}"><i class="fa fa-reply" aria-hidden="true"></i></a>
 
-                <a href="#" class="btn btn-primary comment-upvote {{ comment.upvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
-                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                <a href="#" class="comment-upvote {{ comment.upvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
+                    <svg class="thumb-up"></svg>
                 </a>
 
-                <a href="#" class="btn btn-danger comment-downvote {{ comment.downvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
-                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                <a href="#" class="comment-downvote {{ comment.downvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
+                    <svg class="thumb-down"></svg>
                 </a>
             {% endif %}
         </div>
