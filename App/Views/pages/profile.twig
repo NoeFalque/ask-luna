@@ -70,14 +70,91 @@
                     <div class="profile-content">
                         <h2>Questions</h2>
                         <div class="profile-questions">
+                            {% for question in questions %}
+                                <a href="{{ url('picture-of-the-day/' ~ question.post_id ~ '#' ~ question.id) }}">
+                                    <div class="single-question" data-id="{{ question.id }}" id="{{ question.id }}" data-level="0">
+                                        <div class="single-question-question">
+                                            <h4>{{ question.content }}</h4>
+                                        </div>
 
+                                        <div class="single-question-infos">
+                                            <div class="single-question-user">
+                                                <div class="single-question-user-picture">
+                                                    <img src="{{ url('uploads/' ~ question.picture) }}" alt="{{ question.username }}">
+                                                </div>
+
+                                                <div class="single-question-user-infos">
+                                                    <p>{{ question.username }}</p>
+                                                    <p class="date-from">{{ question.date }}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="single-question-actions">
+                                                <span>{{ question.score }} likes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
                         </div>
                     </div>
 
                     <div class="profile-content">
                         <h2>Answers</h2>
                         <div class="profile-answers">
+                            {% for answer in answers %}
+                                <a href="{{ url('picture-of-the-day/' ~ answer.post_id ~ '#' ~ answer.parent_id) }}">
+                                    <div class="single-interactions single-interactions-profile">
+                                        <div class="single-question" data-id="{{ answer.parent_id }}" id="{{ answer.parent_id }}" data-level="0">
+                                            <div class="single-question-question">
+                                                <h4>{{ answer.question_content }}</h4>
+                                            </div>
 
+                                            <div class="single-question-infos">
+                                                <div class="single-question-user">
+                                                    <div class="single-question-user-picture">
+                                                        <img src="{{ url('uploads/' ~ answer.question_picture) }}" alt="{{ answer.question_username }}">
+                                                    </div>
+
+                                                    <div class="single-question-user-infos">
+                                                        <p>{{ answer.question_username }}</p>
+                                                        <p class="date-from">{{ answer.question_date }}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="single-question-actions">
+                                                    <span>{{ answer.question_score }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="single-question-answers" style="margin-left: 50px;">
+                                            <div class="single-answer" data-id="{{ answer.id }}" id="{{ answer.id }}" data-level="1">
+                                                <div class="single-answer-answer">
+                                                    <p>{{ answer.content }}</p>
+                                                </div>
+
+                                                <div class="single-answer-infos">
+                                                    <div class="single-answer-user">
+                                                        <div class="single-answer-user-picture">
+                                                            <img src="{{ url('uploads/' ~ answer.picture) }}" alt="{{ answer.username }}">
+                                                        </div>
+
+                                                        <div class="single-answer-user-infos">
+                                                            <p>{{ answer.username }}</p>
+                                                            <p class="date-from">{{ answer.date }}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="single-answer-actions">
+                                                        <strong class="comment-score">{{ answer.score }}</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
                         </div>
                     </div>
 

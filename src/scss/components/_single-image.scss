@@ -138,6 +138,11 @@
     border-radius: $border-radius-2;
 }
 
+.single-interactions-profile {
+    background: transparent;
+    box-shadow: none;
+}
+
 .single-navigation {
     display: flex;
     flex-direction: column;

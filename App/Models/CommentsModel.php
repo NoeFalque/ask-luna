@@ -35,6 +35,42 @@ class CommentsModel extends Model {
                              LIMIT 2", []);
     }
 
+    public function userQuestions($id) {
+        return $this->query("SELECT comments.id, comments.post_id, comments.content, comments.parent_id, comments.score, comments.misunderstand, comments.date, comments.user_id, users.id AS user__id, users.username, users.picture, posts.id AS post__id, posts.url FROM {$this->table}
+                             LEFT JOIN users
+                             ON comments.user_id = users.id
+                             LEFT JOIN posts
+                             ON comments.post_id = posts.id
+                             WHERE comments.parent_id = 0
+                             AND comments.user_id = ?
+                             ORDER BY comments.date DESC
+                             LIMIT 3", [$id]);
+    }
+
+    public function userAnswers($id) {
+        $answers = $this->query("SELECT comments.id, comments.post_id, comments.content, comments.parent_id, comments.score, comments.misunderstand, comments.date, comments.user_id, users.id AS user__id, users.username, users.picture, posts.id AS post__id, posts.url FROM {$this->table}
+                             LEFT JOIN users
+                             ON comments.user_id = users.id
+                             LEFT JOIN posts
+                             ON comments.post_id = posts.id
+                             WHERE comments.parent_id != 0
+                             AND comments.user_id = ?
+                             ORDER BY comments.date DESC
+                             LIMIT 3", [$id]);
+
+        foreach ($answers as $answer) {
+            $question = $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$answer->parent_id], true);
+
+            $answer->question_content  = $question->content;
+            $answer->question_date     = $question->date;
+            $answer->question_score    = $question->score;
+            $answer->question_username = $this->query("SELECT username FROM users WHERE id = ?", [$question->user_id], true)->username;
+            $answer->question_picture  = $this->query("SELECT picture FROM users WHERE id = ?", [$question->user_id], true)->picture;
+        }
+
+        return $answers;
+    }
+
     public function questionsCount($id) {
         $query = $this->query("SELECT id FROM {$this->table} WHERE user_id = ? AND parent_id = 0", [$id]);
 

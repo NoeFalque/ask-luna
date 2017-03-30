@@ -49,17 +49,26 @@ class UsersController extends Controller {
         $model = new UsersModel();
         $user  = $model->single($username);
 
+        if(!$user) {
+            App::error();
+            exit;
+        }
+
         $stats = new \stdClass;
         $model2 = new CommentsModel();
         $stats->questions = $model2->questionsCount($user->id);
         $stats->answers   = $model2->answersCount($user->id);
         $stats->likes     = $model2->likesCount($user->id);
+        $questions        = $model2->userQuestions($user->id);
+        $answers          = $model2->userAnswers($user->id);
 
         $this->render('pages/profile.twig', [
             'title'       => 'Profile',
             'description' => '',
             'user'        => $user,
-            'stats'       => $stats
+            'stats'       => $stats,
+            'questions'   => $questions,
+            'answers'     => $answers
         ]);
     }
 
