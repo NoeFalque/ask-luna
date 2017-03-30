@@ -15,6 +15,7 @@
         "twig/twig": "~2.0",
         "symfony/yaml": "^3.2",
         "phpmailer/phpmailer": "^5.2",
-        "league/event": "^2.1"
+        "league/event": "^2.1",
+        "google/apiclient": "^2.0"
     }
 }

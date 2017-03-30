@@ -21,6 +21,36 @@ dev:
         password: null
         port: 1025
     api_key: 's8VS1TaC9yWQv7jUZdPHBFKkq9OPdGv25skdu4u3'
+    google_client:
+        id: '346667477104-9o3qg8b1hra6pg9532tv63lspcpu2gp6.apps.googleusercontent.com'
+        secret: 'JISWBatbi8ddLh0wiGKUx2hr'
+        redirect_uri: 'http://localhost:8888/googleconnect'
+
+prod:
+    name: 'Intensive space'
+    description: ''
+    url: 'http://space.greeeg.com/'
+    database:
+        username: 'root'
+        password: 'root'
+        name: 'space'
+        host: 'localhost'
+        type: 'mysql'
+    debug: true
+    twig:
+        cache: false
+    salt: '987k(dO9dj'
+    mail:
+        from: 'root@root.com'
+        host: 'localhost'
+        username: null
+        password: null
+        port: 1025
+    api_key: 's8VS1TaC9yWQv7jUZdPHBFKkq9OPdGv25skdu4u3'
+    google_client:
+        id: '346667477104-q53jtiq71vdkpd48jvs9vbfgeiipe8b3.apps.googleusercontent.com'
+        secret: 'gMn2u3pUivAA3kkelT6iOIM2'
+        redirect_uri: 'http://space.greeeg.com/googleconnect'
 
 noe:
     name: 'Intensive space'
@@ -43,3 +73,7 @@ noe:
         password: null
         port: 1025
     api_key: 's8VS1TaC9yWQv7jUZdPHBFKkq9OPdGv25skdu4u3'
+    google_client:
+        id: '788456163493-2lrisg4ec148gn0rur68lm3bkgeqno4p.apps.googleusercontent.com'
+        secret: 'GwchnmiL06PfM0YAEesaw9TR'
+        redirect_uri: 'http://localhost:8888/connexion'

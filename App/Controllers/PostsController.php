@@ -150,18 +150,27 @@ class PostsController extends Controller {
         $model2   = new CommentsModel();
         $comments = $model2->related($id);
 
-        foreach ($comments as $comment) {
-            $model = new VotesModel();
+        if(isset($_SESSION['id'])) {
+            foreach ($comments as $comment) {
+                $model = new VotesModel();
 
-            if($model->alreadyUpvote('comments', $comment->id, $_SESSION['id']) != false) {
-                $comment->upvote = 'true';
-            } else {
-                $comment->upvote = 'false';
+                if($model->alreadyUpvote('comments', $comment->id, $_SESSION['id']) != false) {
+                    $comment->upvote = 'true';
+                } else {
+                    $comment->upvote = 'false';
+                }
+
+                if($model->alreadyDownvote('comments', $comment->id, $_SESSION['id']) != false) {
+                    $comment->downvote = 'true';
+                } else {
+                    $comment->downvote = 'false';
+                }
             }
+        }
 
-            if($model->alreadyDownvote('comments', $comment->id, $_SESSION['id']) != false) {
-                $comment->downvote = 'true';
-            } else {
+        else {
+            foreach ($comments as $comment) {
+                $comment->upvote   = 'false';
                 $comment->downvote = 'false';
             }
         }

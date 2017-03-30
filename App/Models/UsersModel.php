@@ -30,4 +30,8 @@ class UsersModel extends Model {
         return $this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true);
     }
 
+    public function googleConnect($id) {
+        return $this->query("SELECT * FROM {$this->table} WHERE google_connected = ?", [$id], true);
+    }
+
 }

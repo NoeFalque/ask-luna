@@ -8,10 +8,22 @@ use \App\Models\UsersModel;
 use \App\Models\CommentsModel;
 use \App\System\Mailer;
 use \App\System\ImageUpload;
+use \Google_Client;
+use \Google_Service_Oauth2;
 
 class UsersController extends Controller {
 
     public function login() {
+        $client = new Google_Client();
+        $client->setClientId(Settings::getConfig()['google_client']['id']);
+        $client->setClientSecret(Settings::getConfig()['google_client']['secret']);
+        $client->setRedirectUri(Settings::getConfig()['google_client']['redirect_uri']);
+        $client->addScope('email');
+        $client->addScope('profile');
+
+        $auth_url = $client->createAuthUrl();
+        $service  = new Google_Service_Oauth2($client);
+
         if(!empty($_POST)) {
             $model = new UsersModel();
 
@@ -39,9 +51,10 @@ class UsersController extends Controller {
         }
 
         $this->render('pages/login.twig', [
-            'title'       => 'Sign in',
-            'description' => 'Sign in to the dashboard',
-            'errors'      => isset($errors) ? $errors : ''
+            'title'         => 'Sign in',
+            'description'   => 'Sign in to the dashboard',
+            'googleconnect' => $auth_url,
+            'errors'        => isset($errors) ? $errors : ''
         ]);
     }
 
@@ -73,6 +86,16 @@ class UsersController extends Controller {
     }
 
     public function signup() {
+        $client = new Google_Client();
+        $client->setClientId(Settings::getConfig()['google_client']['id']);
+        $client->setClientSecret(Settings::getConfig()['google_client']['secret']);
+        $client->setRedirectUri(Settings::getConfig()['google_client']['redirect_uri']);
+        $client->addScope('email');
+        $client->addScope('profile');
+
+        $auth_url = $client->createAuthUrl();
+        $service  = new Google_Service_Oauth2($client);
+
         if(!empty($_POST)) {
             $username         = isset($_POST['username']) ? $_POST['username'] : '';
             $email            = isset($_POST['email']) ? $_POST['email'] : '';
@@ -94,29 +117,15 @@ class UsersController extends Controller {
                     'created_at' => date('Y-m-d H:i:s')
                 ]);
 
-                // $content = App::getTwig()->render('mail_new.twig', [
-                //     'username'    => $username,
-                //     'password'    => $password,
-                //     'title'       => Settings::getConfig()['name'],
-                //     'description' => Settings::getConfig()['description'],
-                //     'link'        => Settings::getConfig()['url'] . 'signin'
-                // ]);
-                //
-                // $mailer = new Mailer();
-                // $mailer->setFrom(Settings::getConfig()['mail']['from'], 'Mailer');
-                // $mailer->addAddress($email);
-                // $mailer->Subject = 'Hello ' . $username . ', welcome on board!';
-                // $mailer->msgHTML($content);
-                // $mailer->send();
-
                 App::redirect('login');
             }
 
             else {
                 $this->render('pages/signup.twig', [
-                    'title'       => 'Sign up',
-                    'description' => '',
-                    'errors'      => $validator->getErrors(),
+                    'title'         => 'Sign up',
+                    'description'   => '',
+                    'errors'        => $validator->getErrors(),
+                    'googleconnect' => $auth_url,
                     'data'        => [
                         'username' => $username,
                         'email'    => $email
@@ -127,8 +136,9 @@ class UsersController extends Controller {
 
         else {
             $this->render('pages/signup.twig', [
-                'title'       => 'Sign up',
-                'description' => ''
+                'title'         => 'Sign up',
+                'description'   => '',
+                'googleconnect' => $auth_url
             ]);
         }
     }
@@ -137,6 +147,68 @@ class UsersController extends Controller {
         session_unset();
         session_destroy();
         App::redirect();
+    }
+
+    public function googleConnect() {
+        $client = new Google_Client();
+        $client->setClientId(Settings::getConfig()['google_client']['id']);
+        $client->setClientSecret(Settings::getConfig()['google_client']['secret']);
+        $client->setRedirectUri(Settings::getConfig()['google_client']['redirect_uri']);
+        $client->addScope('email');
+        $client->addScope('profile');
+
+        $auth_url = $client->createAuthUrl();
+        $service  = new Google_Service_Oauth2($client);
+
+        if(isset($_GET['code'])) {
+            $client->authenticate($_GET['code']);
+            $client->setAccessToken($client->getAccessToken());
+            $user = $service->userinfo->get();
+
+            $model  = new UsersModel();
+            $result = $model->googleConnect($user->id);
+
+            if($result == false) {
+                $model2  = new ImageUpload();
+                $picture = $model2->add($user->picture);
+
+                $model->create([
+                    'username'         => round(microtime(true)),
+                    'email'            => $user->email,
+                    'picture'          => $picture,
+                    'google_connected' => $user->id,
+                    'created_at'       => date('Y-m-d H:i:s')
+                ]);
+
+                $new_user = $model->query("SELECT * FROM users WHERE google_connected = ?", [
+                    $user->id
+                ], true);
+
+                $_SESSION['auth']    = $new_user->username;
+                $_SESSION['id']      = $new_user->id;
+                $_SESSION['email']   = $new_user->email;
+                $_SESSION['picture'] = $new_user->picture;
+
+                App::redirect();
+            }
+
+            else {
+                $new_user = $model->query("SELECT * FROM users WHERE google_connected = ?", [
+                    $user->id
+                ], true);
+
+                $_SESSION['auth']    = $new_user->username;
+                $_SESSION['id']      = $new_user->id;
+                $_SESSION['email']   = $new_user->email;
+                $_SESSION['picture'] = $new_user->picture;
+
+                App::redirect();
+            }
+        }
+
+        else {
+            App::redirect('login');
+        }
     }
 
     public function settingsAccount() {
