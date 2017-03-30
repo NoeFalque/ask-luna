@@ -17,7 +17,10 @@
             <div class="jumbotron-actions">
                 <ul>
                     <li>
-                        <a href="{{ url('picture-of-the-day/' ~ last_post.id) }}" role="button">Explore this case</a>
+                        <a href="{{ url('picture-of-the-day/' ~ last_post.id) }}" id="explore-btn" role="button" onclick="this.classList.add('clicked')">
+                            <i class="fa fa-rocket" aria-hidden="true"></i>
+                            <span>Explore this case</span>
+                        </a>
                     </li>
                 </ul>
             </div>
