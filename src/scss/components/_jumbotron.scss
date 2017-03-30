@@ -80,7 +80,7 @@
 
 .jumbotron-actions {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     right: 40px;
 
     ul {
@@ -105,6 +105,9 @@
         }
 
         li.jumbotron-actions-share {
+
+            vertical-align: top;
+
             a {
                 padding: 0px;
                 width: 37px;
