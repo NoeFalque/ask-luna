@@ -6,7 +6,11 @@
     <div class="single-answer-infos">
         <div class="single-answer-user">
             <div class="single-answer-user-picture">
-                <img src="{{ url('uploads/' ~ comment.picture) }}" alt="{{ comment.username }}">
+                {% if comment.picture %}
+                    <img src="{{ url('uploads/' ~ comment.picture) }}" alt="{{ comment.username }}">
+                {% else %}
+                    <img src="{{ asset('img/default.png') }}" alt="{{ comment.username }}">
+                {% endif %}
             </div>
 
             <div class="single-answer-user-infos">
