@@ -6,7 +6,11 @@
     <div class="single-answer-infos">
         <div class="single-answer-user">
             <div class="single-answer-user-picture">
-                <img src="{{ url('uploads/' ~ comment.picture) }}" alt="{{ comment.username }}">
+                {% if comment.picture %}
+                    <img src="{{ url('uploads/' ~ comment.picture) }}" alt="{{ comment.username }}">
+                {% else %}
+                    <img src="{{ asset('img/default.png') }}" alt="{{ comment.username }}">
+                {% endif %}
             </div>
 
             <div class="single-answer-user-infos">
@@ -17,8 +21,6 @@
 
         <div class="single-answer-actions">
             {% if i < 2 %}
-                <strong class="comment-score">{{ comment.score }}</strong>
-
                 <a href="#" class="btn btn-secondary comment-comment" data-id="{{ comment.id }}"><i class="fa fa-reply" aria-hidden="true"></i></a>
 
                 <a href="#" class="comment-upvote {{ comment.upvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
@@ -28,6 +30,8 @@
                 <a href="#" class="comment-downvote {{ comment.downvote == 'true' ? 'active' : '' }}" data-id="{{ comment.id }}">
                     <svg class="thumb-down"></svg>
                 </a>
+
+                <strong class="comment-score">{{ comment.score }}</strong>
             {% endif %}
         </div>
     </div>

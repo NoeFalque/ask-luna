@@ -96,14 +96,11 @@
                             </a>
 
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ url(auth) }}">{{ auth }}</a>
-                                <a class="dropdown-item" href="{{ url('settings/account') }}">Settings</a>
-                                <a class="dropdown-item" href="{{ url('answer') }}">Answer questions</a>
+                                <a class="dropdown-item" href="{{ url(auth) }}" title="{{ auth }}">Profile</a>
+                                <a class="dropdown-item" href="{{ url('settings/account') }}" title="Settings">Settings</a>
+                                <a class="dropdown-item" href="{{ url('answer') }}" title="Answer questions">Answer questions</a>
+                                <a class="dropdown-item" href="{{ url('logout') }}" title="Log out">Log out</a>
                             </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('logout') }}">Log out</a>
                         </li>
                     {% endif %}
                 </ul>

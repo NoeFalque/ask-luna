@@ -115,3 +115,21 @@
         @extend .profile-card;
     }
 }
+
+.profile-score {
+    display: flex;
+    align-items: center;
+    color: $black-2;
+    font-weight: bold;
+}
+
+.profile-icon {
+    width: 34px;
+    height: auto;
+    margin-right: 6px;
+}
+
+.profile .single-question-infos,
+.profile .single-answer-user {
+    align-items: center;
+}

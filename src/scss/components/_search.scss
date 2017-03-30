@@ -47,6 +47,12 @@
 }
 
 .search-input {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    left: 30px;
+    z-index: $zindex-4;
+
     input[type="search"] {
         display: block;
         width: 100%;
@@ -57,17 +63,28 @@
         padding: 60px 30px;
         color: $white;
         font-size: 3em;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    }
+
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+        display: none;
     }
 }
 
 .search-results {
     width: 100%;
+    padding-top: 140px;
     overflow-y: scroll;
     padding-left: 30px;
-    height: calc(100vh - 216px);
+    height: calc(100vh - 40px);
 
     ul {
         padding: 0;
+        display: flex;
+        flex-wrap: wrap;
 
         li {
             transform: translateX(30px);
@@ -84,21 +101,60 @@
             }
         }
     }
-
-    p {
-        color: $white;
-        font-size: 2.2em;
-    }
 }
 
 .search-item {
+    padding: 30px;
+    width: 33.33%;
+    display: flex;
+    flex-direction: row;
     list-style: none;
     margin-bottom: 20px;
+    color: $white;
 }
 
 .search-link {
+    width: 100%;
+
+    &:hover {
+        .search-picture {
+            background-size: 140%;
+        }
+
+        .search-title {
+            color: $main-color;
+        }
+    }
+}
+
+.search-picture {
+    width: 100%;
+    height: 210px;
+    background-size: 130%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s $easing;
+    will-change: background-size;
+}
+
+@media screen and (min-width: $wide-desktop) {
+    .search-picture {
+        height: 250px;
+    }
+}
+
+.search-title {
     color: $white;
-    font-size: 2.6em;
+    line-height: 1.6;
+    font-size: 1.2em;
+    margin: 25px 0px 0px 0px;
+    transition: color 0.5s $easing;
+}
+
+.search-date {
+    color: $white;
+    font-size: 1em;
+    margin: 10px 0px 0px 0px;
 }
 
 @keyframes translate {

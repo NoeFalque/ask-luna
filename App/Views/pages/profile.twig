@@ -90,7 +90,7 @@
                                             </div>
 
                                             <div class="single-question-actions">
-                                                <span>{{ question.score }} likes</span>
+                                                <div class="profile-score"><img src="{{ asset('img/reactions/love.png') }}" alt="loves" class="profile-icon">{{ question.score }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                                                 </div>
 
                                                 <div class="single-question-actions">
-                                                    <span>{{ answer.question_score }}</span>
+                                                    <div class="profile-score"><img src="{{ asset('img/reactions/love.png') }}" alt="loves" class="profile-icon">{{ answer.question_score }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,7 +147,11 @@
                                                     </div>
 
                                                     <div class="single-answer-actions">
-                                                        <strong class="comment-score">{{ answer.score }}</strong>
+                                                        {% if answer.score >= 0 %}
+                                                            <div class="profile-score"><img src="{{ asset('img/reactions/upvote.png') }}" alt="loves" class="profile-icon">{{ answer.score }}</div>
+                                                        {% else %}
+                                                            <div class="profile-score"><img src="{{ asset('img/reactions/downvote.png') }}" alt="loves" class="profile-icon">{{ answer.score }}</div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
