@@ -17,6 +17,11 @@ $router->get('/', function() {
     $controller->index();
 });
 
+$router->get('/googleconnect', function() {
+    $controller = new \App\Controllers\UsersController();
+    $controller->googleConnect();
+});
+
 $router->get('/login/', function() {
     $controller = new \App\Controllers\UsersController();
     $controller->login();
