@@ -1,0 +1,48 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="section">
+            <div class="section-title">
+                <h2><b>Latest</b> pictures</h2>
+            </div>
+
+            <div class="section-grid">
+                {% for post in posts %}
+                <div class="section-grid-item section-grid-item-4">
+                    <a href="{{ url('picture-of-the-day/' ~ post.id) }}">
+                        <div class="card">
+                            <div class="card-image" style="background-image: url('{{ url('uploads/' ~ post.url) }}');">
+
+                            </div>
+
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <h3>{{ post.title }}</h3>
+                                </div>
+
+                                <div class="card-infos">
+                                    <div class="card-author">
+                                        <div class="card-author-details">
+                                            <span class="card-date date-from">{{ post.date }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-reactions">
+                                        <div class="card-reaction">
+                                            {{ post.questions }} questions
+                                            {{ post.answers }} answers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

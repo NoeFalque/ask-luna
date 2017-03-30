@@ -25,9 +25,9 @@ class PostsController extends Controller {
         }
     }
 
-    public function all() {
+    public function index() {
         $model         = new PostsModel();
-        $latest_posts  = $model->latest();
+        $latest_posts  = $model->latest(6);
         $last          = $model->last();
 
         $model2        = new CommentsModel();
@@ -43,6 +43,18 @@ class PostsController extends Controller {
             'questions'     => $questions,
             'popular_posts' => $popular_posts,
             'latest_posts'  => $latest_posts
+        ]);
+    }
+
+    public function all() {
+        $model = new PostsModel();
+        $posts = $model->latest();
+
+        $this->render('pages/all.twig', [
+            'title'         => 'Pictures of the day',
+            'description'   => '',
+            'page'          => 'index',
+            'posts'         => $posts
         ]);
     }
 

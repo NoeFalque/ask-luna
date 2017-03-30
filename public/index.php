@@ -14,7 +14,7 @@ require('../App/System/Listeners.php');
 
 $router->get('/', function() {
     $controller = new \App\Controllers\PostsController();
-    $controller->all();
+    $controller->index();
 });
 
 $router->get('/login/', function() {
@@ -39,6 +39,11 @@ $router->get('/signup/', function() {
 $router->post('/signup/', function() {
     $controller = new \App\Controllers\UsersController();
     $controller->signup();
+});
+
+$router->get('/pictures-of-the-day', function() {
+    $controller = new \App\Controllers\PostsController();
+    $controller->all();
 });
 
 $router->get('/picture-of-the-day/:id', function($id) {
