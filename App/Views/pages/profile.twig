@@ -8,8 +8,14 @@
             <div class="profile">
                 <div class="col-md-4">
                     <div class="profile-presentation">
-                        <div class="profile-picture" style="background-image: url({{ url('uploads/' ~ user.picture) }})">
-                        </div>
+                        {% if user.picture %}
+                            <div class="profile-picture" style="background-image: url('{{ url('uploads/' ~ user.picture) }}')">
+                            </div>
+                        {% else %}
+                            <div class="profile-picture" style="background-image: url('{{ asset('img/default.png') }}')">
+                            </div>
+                        {% endif %}
+
                         <h1 class="profile-title">@{{ user.username }}</h1>
                         <p class="profile-description">{{ user.description }}</p>
                     </div>

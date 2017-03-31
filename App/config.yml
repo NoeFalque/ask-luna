@@ -31,10 +31,10 @@ prod:
     description: ''
     url: 'http://space.greeeg.com/'
     database:
-        username: 'root'
-        password: 'root'
-        name: 'space'
-        host: 'localhost'
+        username: 'gregoirexhspace'
+        password: '3Rz7Em2thrER'
+        name: 'gregoirexhspace'
+        host: 'gregoirexhspace.mysql.db'
         type: 'mysql'
     debug: true
     twig:
