@@ -2,6 +2,8 @@ Ask Luna
 ========
 All your questions about space, answered every day with one image and one topic.
 
+![Ask Luna](https://github.com/NoeFalque/intensive-space/blob/master/public/assets/img/screen.jpg?raw=true)
+
 ### Features
 * Astronomy Picture of the Day
 * Users w/profile & settings
