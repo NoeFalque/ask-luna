@@ -29,14 +29,5 @@ function smooth_scroll() {
         }, 5)
     }
 }
-smooth_scroll()
 
-// let notifs;
-// while(!notifs || notifs.length <= 0) {
-//     notifs = document.querySelectorAll(".dropdown-notifications .dropdown-item");
-// }
-// for(let i in notifs){
-//     notifs.addEventListener(notifs[i], "click", (e)=>{
-//         console.log(this.getAttribute("href"))
-//     });
-// }
+smooth_scroll()

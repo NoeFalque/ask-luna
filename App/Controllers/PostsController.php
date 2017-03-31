@@ -13,6 +13,10 @@ use \App\System\FormValidator;
 
 class PostsController extends Controller {
 
+    /*
+     * Constuctor used to get last APOD if
+     * not in Databse
+     */
     public function __construct() {
         $date = date('Y-m-d');
 
@@ -25,6 +29,10 @@ class PostsController extends Controller {
         }
     }
 
+    /*
+     * Index page with Pictures
+     * and questions
+     */
     public function index() {
         $model         = new PostsModel();
         $latest_posts  = $model->latest(6);
@@ -46,6 +54,9 @@ class PostsController extends Controller {
         ]);
     }
 
+    /*
+     * APOD history
+     */
     public function all() {
         $model = new PostsModel();
         $posts = $model->latest();
@@ -58,6 +69,9 @@ class PostsController extends Controller {
         ]);
     }
 
+    /*
+     * Search API
+     */
     public function search($query) {
         $model   = new PostsModel();
         $results = $model->search($query);
@@ -71,6 +85,10 @@ class PostsController extends Controller {
         echo json_encode($response);
     }
 
+    /*
+     * Single APOD with infos,
+     * questions & answers
+     */
     public function single($id) {
         $model = new PostsModel();
         $post  = $model->find($id);
@@ -150,6 +168,10 @@ class PostsController extends Controller {
         $model2   = new CommentsModel();
         $comments = $model2->related($id);
 
+        /*
+         * Know if current user already
+         * reacted to a comment
+         */
         if(isset($_SESSION['id'])) {
             foreach ($comments as $comment) {
                 $model = new VotesModel();
@@ -175,6 +197,10 @@ class PostsController extends Controller {
             }
         }
 
+        /*
+         * Create comments tree with questions
+         * and answers using children property
+         */
         $comments_by_id = [];
 
         foreach ($comments as $comment) {

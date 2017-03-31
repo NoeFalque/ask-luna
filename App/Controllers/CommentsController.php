@@ -8,6 +8,10 @@ use \App\Models\VotesModel;
 
 class CommentsController extends Controller {
 
+    /*
+     * Show latest questions without
+     * answers or activity
+     */
     public function answer() {
         $model     = new CommentsModel();
         $questions = $model->answer();
@@ -20,6 +24,9 @@ class CommentsController extends Controller {
         ]);
     }
 
+    /*
+     * Upvote a comment
+     */
     public function upvote($id) {
         $model  = new VotesModel();
         $model2 = new CommentsModel();
@@ -50,6 +57,9 @@ class CommentsController extends Controller {
         }
     }
 
+    /*
+     * Downvote a comment
+     */
     public function downvote($id) {
         $model  = new VotesModel();
         $model2 = new CommentsModel();

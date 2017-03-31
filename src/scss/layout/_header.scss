@@ -53,6 +53,7 @@
         left: 0;
         width: 100%;
         height: 100%;
+        overflow-y: scroll;
         background: $main-color;
         background: $gradient;
         z-index: $zindex-5;
@@ -221,5 +222,37 @@
 
     a.dropdown-item {
         display: block;
+    }
+}
+
+@media screen and (max-width: $tablet) {
+    .dropdown-notifications {
+        padding: 20px;
+        text-align: left;
+
+        .dropdown-item {
+            display: block;
+            color: $white;
+            margin-bottom: 3px;
+        }
+    }
+
+    .dropdown-item {
+        .toggle-notifications {
+            color: $white;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    }
+
+    .dropdown-menu {
+        padding: 20px;
+        text-align: left;
+
+        .dropdown-item {
+            display: block;
+            color: $white;
+        }
     }
 }

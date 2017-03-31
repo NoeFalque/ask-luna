@@ -82,7 +82,7 @@ comment_buttons.forEach((button) => {
 
             element.innerHTML = `
                 <form action="#" method="POST">
-                    <input type="text" name="answer" id="answer" class="form-control comment-reply-textarea" required autofocus>
+                    <textarea name="answer" id="answer" class="form-control comment-reply-textarea" required autofocus></textarea>
                     <input type="hidden" name="parent_id" value="${id}">
                     <button type="submit" class="btn btn-primary">Send</button>
                 </form>

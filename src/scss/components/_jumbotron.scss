@@ -120,3 +120,11 @@
         }
     }
 }
+
+@media screen and (max-width: $tablet) {
+    .content-top {
+        .jumbotron-actions {
+            display: none;
+        }
+    }
+}

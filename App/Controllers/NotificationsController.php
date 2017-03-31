@@ -6,6 +6,10 @@ use \App\Models\NotificationsModel;
 
 class NotificationsController extends Controller {
 
+    /*
+     * Mark all notifications as read
+     * for current user
+     */
     public function mark() {
         if(isset($_SESSION['id'])) {
             $id = $_SESSION['id'];

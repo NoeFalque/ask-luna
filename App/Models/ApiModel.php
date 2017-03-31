@@ -9,6 +9,10 @@ class ApiModel extends Model {
 
     protected $table = "posts";
 
+    /*
+     * Get from the NASA APOD API
+     * information for a specific picture
+     */
     public function get($date) {
         $key     = Settings::getConfig()['api_key'];
         $media   = json_decode(file_get_contents("https://api.nasa.gov/planetary/apod?api_key=$key&date=$date"));

@@ -74,7 +74,7 @@ comment_buttons.forEach(function (button) {
             var element = document.createElement('div');
             element.classList.add('comment-reply-form');
 
-            element.innerHTML = '\n                <form action="#" method="POST">\n                    <input type="text" name="answer" id="answer" class="form-control comment-reply-textarea" required autofocus>\n                    <input type="hidden" name="parent_id" value="' + id + '">\n                    <button type="submit" class="btn btn-primary">Send</button>\n                </form>\n            ';
+            element.innerHTML = '\n                <form action="#" method="POST">\n                    <textarea name="answer" id="answer" class="form-control comment-reply-textarea" required autofocus></textarea>\n                    <input type="hidden" name="parent_id" value="' + id + '">\n                    <button type="submit" class="btn btn-primary">Send</button>\n                </form>\n            ';
             parent.parentNode.insertBefore(element, parent.nextSibling);
         } else {
             parent.classList.remove('comment-reply-open');

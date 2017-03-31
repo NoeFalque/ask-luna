@@ -14,7 +14,7 @@
             </div>
 
             <div class="single-answer-user-infos">
-                <p>{{ comment.username }}</p>
+                <p><a href="{{ url(comment.username) }}" title="{{ comment.username }}">{{ comment.username }}</a></p>
                 <p class="date-from">{{ comment.date }}</p>
             </div>
         </div>

@@ -168,3 +168,9 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: $tablet) {
+    .search-item {
+        width: 100%;
+    }
+}

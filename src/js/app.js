@@ -1,3 +1,6 @@
+/*
+ * Hide loader when DOM content is loaded
+ */
 window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         document.querySelector('.loader').classList.remove('loader-expanded')
@@ -9,6 +12,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 500)
 })
 
+
+/*
+ * Notifications toggle
+ */
 let toggle_notifications = document.querySelector('.toggle-notifications')
 
 if(toggle_notifications) {
@@ -47,6 +54,10 @@ if(toggle_notifications) {
     })
 }
 
+
+/*
+ * Dropdowns toggle show
+ */
 let dropdown_toggle = document.querySelectorAll('.dropdown-toggle')
 
 if(dropdown_toggle) {
@@ -73,6 +84,10 @@ if(nav_toggle) {
     })
 }
 
+
+/*
+ * Moment.js formatted dates
+ */
 let dates_formatted = document.querySelectorAll('.date-formatted')
 
 dates_formatted.forEach((date) => {
@@ -87,80 +102,89 @@ dates_from.forEach((date) => {
     date.innerHTML = moment(date_date).fromNow()
 })
 
+
+/*
+ * Global search
+ */
 let header_search = document.querySelector('.header-search')
 
-header_search.addEventListener('click', (e) => {
-    e.preventDefault()
-    let search = document.querySelector('.search')
-    search.classList.add('search-active')
-    let body   = document.querySelector('body')
-    body.classList.add('body-blocked')
-})
+if(header_search) {
+    header_search.addEventListener('click', (e) => {
+        e.preventDefault()
+        let search = document.querySelector('.search')
+        search.classList.add('search-active')
+        let body   = document.querySelector('body')
+        body.classList.add('body-blocked')
+    })
+}
 
 let search_close = document.querySelector('.search-close')
 
-search_close.addEventListener('click', (e) => {
-    e.preventDefault()
-    let search = document.querySelector('.search')
-    search.classList.remove('search-active')
-    let body   = document.querySelector('body')
-    body.classList.remove('body-blocked')
-})
+if(search_close) {
+    search_close.addEventListener('click', (e) => {
+        e.preventDefault()
+        let search = document.querySelector('.search')
+        search.classList.remove('search-active')
+        let body   = document.querySelector('body')
+        body.classList.remove('body-blocked')
+    })
+}
 
 let search_input = document.querySelector('.search-input-input')
 
-search_input.addEventListener('keyup', () => {
-    let query = search_input.value
-    let $results = document.querySelector('.search-results')
+if(search_input) {
+    search_input.addEventListener('keyup', () => {
+        let query = search_input.value
+        let $results = document.querySelector('.search-results')
 
-    $results.innerHTML = ''
+        $results.innerHTML = ''
 
-    if(query != '') {
-        let xhttp = new XMLHttpRequest()
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let res = JSON.parse(this.responseText)
+        if(query != '') {
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let res = JSON.parse(this.responseText)
 
-                if(res.results.length == 0) {
-                    $results.innerHTML = `<p>Sorry but nothing match your request :(</p>`
-                }
+                    if(res.results.length == 0) {
+                        $results.innerHTML = `<p>Sorry but nothing match your request :(</p>`
+                    }
 
-                else if(res.results.length > 0) {
-                    let $ul = document.createElement('ul')
+                    else if(res.results.length > 0) {
+                        let $ul = document.createElement('ul')
 
-                    res.results.forEach((result) => {
-                        let $li = document.createElement('li')
-                        $li.classList.add('search-item')
+                        res.results.forEach((result) => {
+                            let $li = document.createElement('li')
+                            $li.classList.add('search-item')
 
-                        $li.innerHTML = `
-                            <a href="${res.url}picture-of-the-day/${result.id}" class="search-link">
-                                <div class="search-picture" style="background-image: url('${res.url}uploads/${result.url}')"></div>
-                                <h3 class="search-title">${result.title}</h3>
-                                <p class="search-date">${moment(result.date).fromNow()}</p>
-                            </a>
-                        `
+                            $li.innerHTML = `
+                                <a href="${res.url}picture-of-the-day/${result.id}" class="search-link">
+                                    <div class="search-picture" style="background-image: url('${res.url}uploads/${result.url}')"></div>
+                                    <h3 class="search-title">${result.title}</h3>
+                                    <p class="search-date">${moment(result.date).fromNow()}</p>
+                                </a>
+                            `
 
-                        $ul.appendChild($li)
-                    })
+                            $ul.appendChild($li)
+                        })
 
-                    $results.appendChild($ul)
-                }
+                        $results.appendChild($ul)
+                    }
 
-                else {
-                    $results.innerHTML = ''
+                    else {
+                        $results.innerHTML = ''
+                    }
                 }
             }
+            xhttp.open('GET', `/api/search/${query}`, true)
+            xhttp.send()
         }
-        xhttp.open('GET', `/api/search/${query}`, true)
-        xhttp.send()
-    }
-})
+    })
+}
 
 
-
-
-// parallax bg on scroll
-
+/*
+ * Background parallax on jumbotrons
+ */
 let $bg = document.querySelector('.jumbotron')
 
 if($bg) {

@@ -13,6 +13,10 @@ use \Google_Service_Oauth2;
 
 class UsersController extends Controller {
 
+    /*
+     * Log in users using Google Client
+     * or built-in authentification system
+     */
     public function login() {
         $client = new Google_Client();
         $client->setClientId(Settings::getConfig()['google_client']['id']);
@@ -58,6 +62,10 @@ class UsersController extends Controller {
         ]);
     }
 
+    /*
+     * Render user profile getting
+     * stats, badges and infos
+     */
     public function single($username) {
         $model = new UsersModel();
         $user  = $model->single($username);
@@ -85,6 +93,10 @@ class UsersController extends Controller {
         ]);
     }
 
+    /*
+     * Sign up using Google client
+     * or built-in authentification system
+     */
     public function signup() {
         $client = new Google_Client();
         $client->setClientId(Settings::getConfig()['google_client']['id']);
@@ -149,6 +161,10 @@ class UsersController extends Controller {
         App::redirect();
     }
 
+    /*
+     * Used on Google successful login
+     * callback page tu register or login user
+     */
     public function googleConnect() {
         $client = new Google_Client();
         $client->setClientId(Settings::getConfig()['google_client']['id']);

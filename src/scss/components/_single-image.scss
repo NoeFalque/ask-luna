@@ -228,6 +228,11 @@
         &:first-child {
             color: $black;
             margin-bottom: 3px;
+
+            a {
+                font-weight: bold;
+                color: $black;
+            }
         }
 
         &:last-child {
@@ -254,22 +259,26 @@
     form {
         display: flex;
         flex-direction: row;
+        align-items: flex-end;
 
-        input[type="text"] {
+        textarea {
             flex-grow: 1;
             border: none;
             border-radius: $border-radius;
             box-shadow: $box-shadow;
             transition: all 0.4s ease;
             padding: 15px 17px;
+            resize: vertical;
 
             &:focus {
+                outline: none;
                 box-shadow: $box-shadow-2;
             }
         }
 
         button {
             margin-left: 10px;
+            height: 48px;
         }
     }
 }
@@ -315,6 +324,11 @@
         &:first-child {
             color: $black;
             margin-bottom: 3px;
+
+            a {
+                font-weight: bold;
+                color: $black;
+            }
         }
 
         &:last-child {
